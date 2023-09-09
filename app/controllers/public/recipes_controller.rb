@@ -6,6 +6,9 @@ class Public::RecipesController < ApplicationController
 
   end
 
+  def index
+  end
+
   def show
   end
 
@@ -18,9 +21,6 @@ class Public::RecipesController < ApplicationController
 
   def destroy
 
-  end
-
-  def index
   end
 
   def favorites

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         get :following_recipes
       end
     end
+    get 'recipes/ranking' => 'recipes#index'
     resources :recipes, except: [:index] do
       resources :comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
@@ -31,7 +32,6 @@ Rails.application.routes.draw do
         get :favorites
       end
     end
-    get 'recipes/ranking' => 'recipes#index'
   end
 
 # 管理者用ルーティング

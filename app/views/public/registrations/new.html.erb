@@ -1,29 +1,44 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center px-0 my-5">
+      <%= image_tag 'TrainingChef_logo.png', size: "350x500" %>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "publics/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light py-4 mb-0">新規登録</h5>
+      <div class="form-body p-4">
+        <div class="mx-auto text-center">
+          <p>ユーザー名・メールアドレス</br>パスワードを入力してください。</p>
+          <%= render "public/shared/error_messages", resource: resource %>
+        </div>
+        <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+            </div>
+            <%= f.text_field :email, autofocus: true, class:"form-control", placeholder: "メールアドレス" %>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-user"></i></span>
+            </div>
+            <%= f.text_field :name, class:"form-control", placeholder: "ユーザー名(半角英数)" %>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
+            </div>
+            <%= f.text_field :password, autocomplete: "new-password", class:"form-control", placeholder: "パスワード(6文字以上)"  %>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+            <td><%= f.text_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder: "パスワード(確認用)"  %></td>
+          </div>
+          <%= f.submit "新規登録", class:"btn btn-lg btn-block btn-info mt-4" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>
