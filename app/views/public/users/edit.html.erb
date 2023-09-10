@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mx-auto">
-    <div class="col-7 mx-2 mx-sm-auto text-center">
+    <div class="col-7 mx-2 mx-auto text-center">
       <h2 class="mt-5">プロフィール編集</h2>
       <% if @user.errors.any? %>
         <ul class="alert alert-danger" role="alert">
@@ -49,8 +49,8 @@
           </td>
         </tr>
       </table>
-        <%= f.submit "編集内容を保存", class:"btn btn-success mt-5" %>
-        <%= link_to "アカウントを削除する", check_user_path(current_user), class:"btn btn-danger ml-4 mt-5" %>
+        <%= f.submit "編集内容を保存", class:"btn btn-success mt-4" %>
+        <%= link_to "アカウントを削除する", check_user_path(current_user), class:"btn btn-danger ml-4 mt-4" %>
       <% end %>
     </div>
   </div>

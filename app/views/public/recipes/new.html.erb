@@ -1,2 +1,27 @@
-<h1>Public::Recipes#new</h1>
-<p>Find me in app/views/public/recipes/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-7 mx-auto text-center mt-5">
+      <%= form_with model: @recipe, url: recipes_path, method: :post, local: true do |f| %>
+        <table class="table table-borderless">
+          <tr>
+            <td><%= f.label :recipe_image, "レシピ画像" %></td>
+            <td class="text-left"><%= f.file_field :recipe_image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :name, "レシピ名" %></td>
+            <td><%= f.text_field :name, class:"form-control", placeholder:"レシピ名を入力してください。" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :material, "材料" %></td>
+            <td><%= f.text_area :material, class:"form-control", placeholder:"材料(分量)を入力してください。"  %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :process, "手順説明" %></td>
+            <td><%= f.text_area :process, class:"form-control" %></td>
+          </tr>
+        </table>
+        <%= f.submit "レシピを投稿する", class:"btn btn-success mt-4" %>
+      <% end %>
+    </div>
+  </div>
+</div>
