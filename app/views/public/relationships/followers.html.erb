@@ -1,2 +1,10 @@
-<h1>Public::Relationships#followers</h1>
-<p>Find me in app/views/public/relationships/followers.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-7 mx-auto mt-5">
+      <h4>フォロワーリスト</h4>
+      <div class="text-center">
+      <%= render "public/users/index", users: @users %>
+      </div>
+    </div>
+  </div>
+</div>

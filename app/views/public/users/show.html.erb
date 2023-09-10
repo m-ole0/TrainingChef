@@ -2,20 +2,21 @@
   <!--プロフィール表示-->
   <div class="row">
     <div class="col text-center">
-      <h4 class="mt-5"><%= @user.name %>のプロフィール</h4>
-      <table class="table table-borderless mx-auto", style="width: 70%">
+      <table class="table table-borderless mx-auto mt-5", style="width: 70%;">
         <tr>
-          <td rowspan="2">あとで画像入れる</td>
-          <td><%= @user.name %></td>
+          <td rowspan="2" class="align-middle"><%= image_tag @user.get_profile_image, class: "rounded-circle", style:"width: 100px; height: 100px;" %></td>
+          <td><h5><%= @user.name %></h5></td>
           <% if @user == current_user %>
             <td><%= link_to "編集する", edit_user_path, class: 'btn btn-primary ml-4' %></td>
             <td><%= link_to "いいねしたレシピ", recipes_ranking_path, class: 'btn btn-success ml-4' %></td>
+          <% else %>
+            <td><%= render "public/relationships/follow_btn", user: @user %></td>
           <% end %>
         </tr>
         <tr>
           <td>投稿<%= @recipes.count %>件</td>
-          <td>フォロー<%= @user.followeds.count %>人</td>
-          <td>フォロワー<%= @user.followers.count %>人</td>
+          <td>フォロー<%= link_to @user.following_users.count, user_followings_path(@user)  %>人</td>
+          <td>フォロワー<%= link_to @user.follower_users.count, user_followers_path(@user) %>人</td>
         </tr>
         <% if @user.introduction.present? %>
           <tr style="border: 1px solid #000;">

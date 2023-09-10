@@ -1,2 +1,57 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="container">
+  <div class="row mx-auto">
+    <div class="col-7 mx-2 mx-sm-auto text-center">
+      <h2 class="mt-5">プロフィール編集</h2>
+      <% if @user.errors.any? %>
+        <ul class="alert alert-danger" role="alert">
+          <h6 class="alert-heading">
+            <%= @user.errors.count %>件のエラーが発生しました
+          </h6>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+        </ul>
+      <% end %>
+
+
+      <%= form_with model: @user, usrl: user_path, method: :patch, local: true do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <td>
+            <%= f.label :profile_image, "プロフィール画像" %>
+          </td>
+          <td class="text-left">
+            <%= f.file_field :profile_image, accept: "image/*"%>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.label :name, "ユーザー名" %>
+          </td>
+          <td>
+            <%= f.text_field :name, class:"form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.label :introduction, "自己紹介文", class: "align-top" %>
+          </td>
+          <td>
+            <%= f.text_area :introduction, class:"form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          <%= f.label :email, "メールアドレス" %>
+          </td>
+          <td>
+          <%= f.text_field :email, class:"form-control" %>
+          </td>
+        </tr>
+      </table>
+        <%= f.submit "編集内容を保存", class:"btn btn-success mt-5" %>
+        <%= link_to "アカウントを削除する", check_user_path(current_user), class:"btn btn-danger ml-4 mt-5" %>
+      <% end %>
+    </div>
+  </div>
+</div>
