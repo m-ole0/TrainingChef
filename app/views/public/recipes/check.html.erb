@@ -13,7 +13,7 @@
               <li><%= @recipe.user.name %></li>
               <li><b><%= @recipe.title %></b></li>
               <li>タグ機能追加後にタグ一覧追加</li>
-              <li>ハート・コメント追記</li>
+              <li>ハート・コメント<%= @recipe.comments.count %>件</li>
             <ul>
           </div>
         </div>

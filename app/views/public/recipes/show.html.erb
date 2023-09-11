@@ -12,7 +12,7 @@
               <li><%=link_to @recipe.user.name, user_path(@recipe.user) %></li>
               <li><b><%=link_to @recipe.title, recipe_path(@recipe) %></b></li>
               <li>タグ機能追加後にタグ一覧追加</li>
-              <li>ハート・コメント追記</li>
+              <li>ハート/コメント<%= @recipe.comments.count %>件</li>
             <ul>
           </div>
         </div>
@@ -31,8 +31,33 @@
               <%= link_to "削除", check_recipe_path(@recipe), class:"btn btn-danger ml-4" %>
             </div>
           <% end %>
-          <div>
-            <p>コメント機能追加</p>
+          <!--コメント入力フォーム-->
+          <div class="mt-2">
+            <%= form_with model: [@recipe, @comment] do |f| %>
+            <div style="display: flex; align-items: center;">
+              <%= f.text_field :comment, placeholder:"コメントを入力", class:"form-control", style:"width: 80%;" %>
+              <%= f.submit "送信", class:"btn btn-primary ml-4" %>
+            </div>
+            <% end %>
+          </div>
+          <!--コメント一覧表示-->
+          <div class="mt-4">
+            <% @recipe.comments.each do |comment| %>
+            <div class="mt-1" style="border: 1px solid #ccc; display: flex; align-items: center;">
+              <div class="ml-4">
+                <%= image_tag comment.user.get_profile_image , class: "rounded-circle", style:"width: 50px; height: 50px;" %>
+              </div>
+              <div>
+                <ul style="list-style: none;">
+                  <li><%= comment.user.name %></li>
+                  <li><%= comment.comment %></li>
+                </ul>
+              </div>
+            </div>
+            <div class="text-right mt-1">
+              <%= link_to "削除する", recipe_comment_path(comment.recipe, comment), method: :delete, class:"btn btn-danger" %>
+            </div>
+            <% end %>
           </div>
         </div>
       </div>
