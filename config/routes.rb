@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       member do
         get :favorites
+        get :check
       end
     end
   end

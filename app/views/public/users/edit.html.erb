@@ -2,6 +2,7 @@
   <div class="row mx-auto">
     <div class="col-7 mx-2 mx-auto text-center">
       <h2 class="mt-5">プロフィール編集</h2>
+      <!--エラー文-->
       <% if @user.errors.any? %>
         <ul class="alert alert-danger" role="alert">
           <h6 class="alert-heading">
@@ -12,8 +13,7 @@
       <% end %>
         </ul>
       <% end %>
-
-
+       <!--入力フォーム-->
       <%= form_with model: @user, usrl: user_path, method: :patch, local: true do |f| %>
       <table class="table table-borderless">
         <tr>

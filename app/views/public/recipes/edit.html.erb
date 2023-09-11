@@ -1,2 +1,58 @@
-<h1>Public::Recipes#edit</h1>
-<p>Find me in app/views/public/recipes/edit.html.erb</p>
+<div class="container">
+  <div class="row mx-auto">
+    <div class="col-6 mt-5">
+      <%= image_tag @recipe.recipe_image, style:"width: 100%; object-fit: cover;" %>
+    </div>
+    <div class="col-6 mx-2 mx-auto text-center mt-5">
+      <!--エラー文-->
+      <% if @recipe.errors.any? %>
+        <ul class="alert alert-danger" role="alert">
+          <h6 class="alert-heading">
+            <%= @recipe.errors.count %>件のエラーが発生しました
+          </h6>
+      <% @recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+        </ul>
+      <% end %>
+       <!--入力フォーム-->
+      <%= form_with model: @recipe, usrl: recipe_path, method: :patch, local: true do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <td>
+            <%= f.label :recipe_image, "レシピ画像" %>
+          </td>
+          <td class="text-left">
+            <%= f.file_field :recipe_image, accept: "image/*"%>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.label :title, "レシピ名" %>
+          </td>
+          <td>
+            <%= f.text_field :title, class:"form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.label :material, "材料", class: "align-top" %>
+          </td>
+          <td>
+            <%= f.text_area :material, class:"form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          <%= f.label :process, "手順" %>
+          </td>
+          <td>
+          <%= f.text_area :process, class:"form-control" %>
+          </td>
+        </tr>
+      </table>
+        <%= f.submit "編集内容を保存", class:"btn btn-success mt-4" %>
+      <% end %>
+    </div>
+  </div>
+</div>

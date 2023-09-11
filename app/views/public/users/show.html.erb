@@ -31,6 +31,25 @@
 
   <!--投稿一覧-->
   <div class="row">
-
+    <div class="col-7 mx-auto">
+      <% @recipes.each do |recipe| %>
+      <div class="card mt-2">
+        <div class="card-header text-center">
+          <%= image_tag recipe.recipe_image, style:"width: 100%; object-fit: cover;" %>
+        </div>
+        <div class="card-body" style="display: flex; align-items: center;">
+          <div><%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px;" %></div>
+          <div>
+            <ul style="list-style: none;">
+              <li><%=link_to recipe.user.name, user_path(recipe.user) %></li>
+              <li><b><%=link_to recipe.title, recipe_path(recipe) %></b></li>
+              <li>タグ機能追加後にタグ一覧追加</li>
+              <li>ハート・コメント追記</li>
+            <ul>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>
