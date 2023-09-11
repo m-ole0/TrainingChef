@@ -1,0 +1,8 @@
+<% if recipe_tags.present? %>
+  <li>
+    <% recipe_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+      <%= link_to tag.name, root_path %>
+    <% end %>
+  </li>
+<% end %>

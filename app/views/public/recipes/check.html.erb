@@ -12,8 +12,18 @@
             <ul style="list-style: none;">
               <li><%= @recipe.user.name %></li>
               <li><b><%= @recipe.title %></b></li>
-              <li>タグ機能追加後にタグ一覧追加</li>
-              <li>ハート・コメント<%= @recipe.comments.count %>件</li>
+              <!--タグ表示URLなし-->
+              <% if @recipe.tags.present? %>
+                <li>
+                  <% @recipe.tags.each do |tag| %>
+                    <i class="fa-sharp fa-solid fa-tag"></i>
+                    <%= tag.name %>
+                  <% end %>
+                </li>
+              <% end %>
+              <li>
+                ♥<%= @recipe.favorites.count %>件/コメント<%= @recipe.comments.count %>件
+              </li>
             <ul>
           </div>
         </div>

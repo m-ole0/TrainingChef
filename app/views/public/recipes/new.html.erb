@@ -31,6 +31,10 @@
             <td><%= f.label :process, "手順説明" %></td>
             <td><%= f.text_area :process, class:"form-control", placeholder:"手順を入力してください。" %></td>
           </tr>
+          <tr>
+            <td><%= f.label :name, "タグ" %></td>
+            <td><%= f.text_field :name, value: @tag_list, class:"form-control", placeholder:"タグは,で区切ると複数タグ追加できます。" %></td>
+          </tr>
         </table>
         <%= f.submit "レシピを投稿する", class:"btn btn-success mt-4" %>
       <% end %>

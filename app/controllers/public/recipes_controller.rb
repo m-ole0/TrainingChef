@@ -6,7 +6,10 @@ class Public::RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
+
+    tag_list = params[:recipe][:name].split(',')
     if @recipe.save
+      @recipe.save_tags(tag_list)
       flash[:notice] = "投稿に成功しました。"
       redirect_to user_path(current_user)
     else
@@ -19,16 +22,20 @@ class Public::RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @recipe_tags = @recipe.tags
     @comment = Comment.new
   end
 
   def edit
     @recipe = Recipe.find(params[:id])
+    @tag_list = @recipe.tags.pluck(:name).join(',')
   end
 
   def update
     @recipe = Recipe.find(params[:id])
+    tag_list=params[:recipe][:name].split(',')
     if @recipe.update(recipe_params)
+      @recipe.save_tags(tag_list)
       flash[:notice] = "レシピを更新しました。"
       redirect_to recipe_path(@recipe)
     else

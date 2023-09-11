@@ -50,6 +50,14 @@
           <%= f.text_area :process, class:"form-control" %>
           </td>
         </tr>
+        <tr>
+          <td>
+            <%= f.label :name, "タグ" %>
+          </td>
+          <td>
+            <%= f.text_field :name, value: @tag_list, class: 'form-control' %>
+          </td>
+        </tr>
       </table>
         <%= f.submit "編集内容を保存", class:"btn btn-success mt-4" %>
       <% end %>

@@ -43,8 +43,10 @@
             <ul style="list-style: none;">
               <li><%=link_to recipe.user.name, user_path(recipe.user) %></li>
               <li><b><%=link_to recipe.title, recipe_path(recipe) %></b></li>
-              <li>タグ機能追加後にタグ一覧追加</li>
-              <li>ハート・コメント<%= recipe.comments.count %>件</li>
+              <%= render "public/recipes/recipe_tag", recipe_tags: recipe.tags %>
+
+
+              <li><%= render "public/favorites/favorite_btn", recipe: recipe %>/コメント<%= recipe.comments.count %>件</li>
             <ul>
           </div>
         </div>

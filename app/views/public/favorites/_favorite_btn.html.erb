@@ -1,0 +1,15 @@
+<% if recipe.user == current_user %>
+  <%= link_to favorites_recipe_path(recipe) do %>
+    ♥<%= recipe.favorites.count %>件
+  <% end %>
+<% else %>
+  <% if recipe.favorited_by?(current_user) %>
+    <%= link_to recipe_favorites_path(recipe), method: :delete do %>
+      ♥<%= recipe.favorites.count %>
+    <% end %>
+  <% else %>
+    <%= link_to recipe_favorites_path(recipe), method: :post do %>
+      ♡<%= recipe.favorites.count %>
+    <% end %>
+  <% end %>
+<% end %>
