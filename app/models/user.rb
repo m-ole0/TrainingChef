@@ -21,6 +21,15 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
+  # ゲストログイン用メソッド
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+      user.introduction = "ゲストログイン用ユーザーです。"
+    end
+  end
+
   #　フォローしたときの処理
   def follow(user_id)
     followers.create(followed_id: user_id)

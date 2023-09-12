@@ -28,7 +28,7 @@
             <%= link_to "人気レシピ", recipes_ranking_path, class: 'nav-link text-light' %>
           </li>
           <li>
-            <%= link_to "ゲストログイン", recipes_ranking_path, class: 'nav-link text-light' %>
+            <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'nav-link text-light' %>
           </li>
           <li>
             <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %>
