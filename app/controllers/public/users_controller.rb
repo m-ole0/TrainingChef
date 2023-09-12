@@ -25,6 +25,8 @@ class Public::UsersController < ApplicationController
   end
 
   def following_recipes
+    user = current_user
+    @following_recipes = Recipe.where(user_id: user.following_users)
   end
 
   def check
