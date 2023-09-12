@@ -1,2 +1,9 @@
-<h1>Public::Users#favorite_recipes</h1>
-<p>Find me in app/views/public/users/favorite_recipes.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-7 mx-auto">
+      <!--いいねしたレシピ一覧-->
+      <%= render 'public/recipes/recipe_index', recipes: @favorite_recipes %>
+    </div>
+  </div>
+</div>
+

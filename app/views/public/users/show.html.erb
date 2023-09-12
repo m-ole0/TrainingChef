@@ -8,7 +8,7 @@
           <td><h5><%= @user.name %></h5></td>
           <% if @user == current_user %>
             <td><%= link_to "編集する", edit_user_path, class: 'btn btn-primary ml-4' %></td>
-            <td><%= link_to "いいねしたレシピ", recipes_ranking_path, class: 'btn btn-success ml-4' %></td>
+            <td><%= link_to "いいねしたレシピ", favorite_recipes_user_path(@user), class: 'btn btn-success ml-4' %></td>
           <% else %>
             <td><%= render "public/relationships/follow_btn", user: @user %></td>
           <% end %>
@@ -32,26 +32,7 @@
   <!--投稿一覧-->
   <div class="row">
     <div class="col-7 mx-auto">
-      <% @recipes.each do |recipe| %>
-      <div class="card mt-2">
-        <div class="card-header text-center">
-          <%= image_tag recipe.recipe_image, style:"width: 100%; object-fit: cover;" %>
-        </div>
-        <div class="card-body" style="display: flex; align-items: center;">
-          <div><%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px;" %></div>
-          <div>
-            <ul style="list-style: none;">
-              <li><%=link_to recipe.user.name, user_path(recipe.user) %></li>
-              <li><b><%=link_to recipe.title, recipe_path(recipe) %></b></li>
-              <%= render "public/recipes/recipe_tag", recipe_tags: recipe.tags %>
-
-
-              <li><%= render "public/favorites/favorite_btn", recipe: recipe %>/コメント<%= recipe.comments.count %>件</li>
-            <ul>
-          </div>
-        </div>
-      </div>
-      <% end %>
+      <%= render 'public/recipes/recipe_index', recipes: @recipes %>
     </div>
   </div>
 </div>

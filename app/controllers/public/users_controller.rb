@@ -19,6 +19,9 @@ class Public::UsersController < ApplicationController
   end
 
   def favorite_recipes
+    user = current_user
+    favorites = Favorite.where(user_id: user.id).pluck(:recipe_id)
+    @favorite_recipes = Recipe.find(favorites)
   end
 
   def following_recipes
