@@ -49,4 +49,8 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : "noimage.png"
   end
 
+  def self.partial_search(content)
+    User.where('name LIKE ?', '%'+content+'%')
+  end
+
 end

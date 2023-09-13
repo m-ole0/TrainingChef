@@ -4,11 +4,11 @@
   <% end %>
 <% else %>
   <% if recipe.favorited_by?(current_user) %>
-    <%= link_to recipe_favorites_path(recipe), method: :delete do %>
+    <%= link_to recipe_favorites_path(recipe), method: :delete, remote: true do %>
       ♥<%= recipe.favorites.count %>
     <% end %>
   <% else %>
-    <%= link_to recipe_favorites_path(recipe), method: :post do %>
+    <%= link_to recipe_favorites_path(recipe), method: :post, remote: true do %>
       ♡<%= recipe.favorites.count %>
     <% end %>
   <% end %>

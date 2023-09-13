@@ -3,4 +3,9 @@ class Tag < ApplicationRecord
   has_many :recipes, through: :recipe_tags
 
   validates :name, presence: true, length: { maximum: 50 }
+
+  def self.partial_search(content)
+    Tag.where('name LIKE ?', '%'+content+'%')
+  end
+
 end

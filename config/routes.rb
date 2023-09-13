@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'searches/search'
 # ユーザー用
   devise_for :users, controllers: {
     registrations: "public/registrations",
@@ -54,4 +55,5 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'search', to: 'searches#search'
 end
