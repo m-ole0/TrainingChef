@@ -1,7 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <%= render 'public/users/index', users: @users %>
+    <div class="col-7 mx-auto mt-5">
+      <% if @users.present? %>
+        <h4>いいねしたユーザー</h4>
+        <div>
+          <%= render 'public/users/index', users: @users %>
+        </div>
+      <% else %>
+        <h4 class="text-center">いいねはありません</h4>
+      <% end %>
     </div>
   </div>
 </div>

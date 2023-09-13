@@ -58,7 +58,8 @@ class Public::RecipesController < ApplicationController
   end
 
   def favorites
-    
+    recipe = Recipe.find(params[:id])
+    @users = recipe.favorited_users
   end
 
   private

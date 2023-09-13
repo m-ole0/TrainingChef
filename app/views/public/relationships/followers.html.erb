@@ -1,10 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-7 mx-auto mt-5">
-      <h4>フォロワーリスト</h4>
-      <div class="text-center">
-      <%= render "public/users/index", users: @users %>
-      </div>
+      <% if @users.present? %>
+        <h4>フォロワーリスト</h4>
+        <div class="text-center">
+        <%= render "public/users/index", users: @users %>
+        </div>
+      <% else %>
+        <h4 class="text-center">まだフォローされていません</h4>
+      <% end %>
     </div>
   </div>
 </div>
