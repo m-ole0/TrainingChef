@@ -28,6 +28,19 @@
           <li>
             <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
           </li>
+        <% elsif admin_signed_in? %>
+          <li>
+            <%= link_to "レシピ一覧", admin_recipes_path, class: 'nav-link text-light' %>
+          </li>
+          <li>
+            <%= link_to "ユーザー一覧", admin_users_path, class: 'nav-link text-light' %>
+          </li>
+          <li>
+            <%= link_to "タグ一覧", admin_tags_path, class: 'nav-link text-light' %>
+          </li>
+          <li>
+            <%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: 'nav-link text-light' %>
+          </li>
         <% else %>
           <li>
             <%= link_to "人気レシピ", recipes_ranking_path, class: 'nav-link text-light' %>

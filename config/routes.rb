@@ -46,7 +46,6 @@ Rails.application.routes.draw do
 
 # 管理者用ルーティング
   namespace :admin do
-    root to: 'homes#top'
     resources :recipes, except: [:new, :create] do
       resources :comments, only: [:destroy]
     end
