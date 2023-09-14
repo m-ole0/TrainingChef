@@ -16,7 +16,8 @@
               <%= render "public/recipes/recipe_tag", recipe_tags: @recipe_tags %>
               <!--いいね数とコメント数表示-->
               <li>
-                <span id="favorite_btn_<%= @recipe.id %>"><%= render "public/favorites/favorite_btn", recipe: @recipe %></span>/コメント<%= @recipe.comments.count %>件
+                <span id="favorite_btn_<%= @recipe.id %>"><%= render "public/favorites/favorite_btn", recipe: @recipe %></span>/
+                <span id="comment_count"><%= render 'public/comments/comment_count', recipe: @recipe %></span>
               </li>
             <ul>
           </div>
@@ -37,32 +38,12 @@
             </div>
           <% end %>
           <!--コメント入力フォーム-->
-          <div class="mt-2">
-            <%= form_with model: [@recipe, @comment] do |f| %>
-            <div style="display: flex; align-items: center;">
-              <%= f.text_field :comment, placeholder:"コメントを入力", class:"form-control", style:"width: 80%;" %>
-              <%= f.submit "送信", class:"btn btn-primary ml-4" %>
-            </div>
-            <% end %>
+          <div id="comment_form" class="mt-2">
+            <%= render 'public/comments/comment_form', recipe: @recipe, comment: @comment %>
           </div>
           <!--コメント一覧表示-->
-          <div class="mt-4">
-            <% @recipe.comments.each do |comment| %>
-            <div class="mt-1" style="border: 1px solid #ccc; display: flex; align-items: center;">
-              <div class="ml-4">
-                <%= image_tag comment.user.get_profile_image , class: "rounded-circle", style:"width: 50px; height: 50px;" %>
-              </div>
-              <div>
-                <ul style="list-style: none;">
-                  <li><%= comment.user.name %></li>
-                  <li><%= comment.comment %></li>
-                </ul>
-              </div>
-            </div>
-            <div class="text-right mt-1">
-              <%= link_to "削除する", recipe_comment_path(comment.recipe, comment), method: :delete, class:"btn btn-danger" %>
-            </div>
-            <% end %>
+          <div id="comment_index" class="mt-4">
+            <%= render 'public/comments/comment_index', recipe: @recipe %>
           </div>
         </div>
       </div>

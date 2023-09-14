@@ -1,2 +1,28 @@
-<h1>Admin::Recipes#index</h1>
-<p>Find me in app/views/admin/recipes/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+      <div class="col-lg-4 col-md-7 mx-auto">
+        <div class="card mb-3" style="height:500px;">
+          <div class="card-header text-center">
+            <%= image_tag recipe.recipe_image, style:"width: 100%; height: 300px; object-fit: cover;" %>
+          </div>
+          <div class="card-body" style="display: flex; align-items: center;">
+            <div>
+              <%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px;" %>
+            </div>
+            <div>
+              <ul style="list-style: none;">
+                <li><%=link_to recipe.user.name, admin_user_path(recipe.user) %></li>
+                <li><b><%=link_to recipe.title, admin_recipe_path(recipe) %></b></li>
+                <li><%= render "public/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
+                <li>
+                  ♥<%= recipe.favorites.count %>件/コメント<%= recipe.comments.count %>件
+                </li>
+              <ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

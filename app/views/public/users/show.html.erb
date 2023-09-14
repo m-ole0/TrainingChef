@@ -16,7 +16,7 @@
         <tr>
           <td>投稿<%= @recipes.count %>件</td>
           <td>フォロー<%= link_to @user.following_users.count, user_followings_path(@user)  %>人</td>
-          <td>フォロワー<%= link_to @user.follower_users.count, user_followers_path(@user) %>人</td>
+          <td id="follower_count_<%= @user.id %>"><%= render 'public/relationships/follower_count', user: @user %></td>
         </tr>
         <% if @user.introduction.present? %>
           <tr style="border: 1px solid #000;">

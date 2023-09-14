@@ -9,7 +9,7 @@
     <td style="width: 50%;">
       <%= link_to user.name, user_path(user) %>
     </td>
-    <td style="width: 30%;">
+    <td id="follow_btn_<%= user.id %>" style="width: 30%;">
       <% if user != current_user %>
         <%= render "public/relationships/follow_btn", user: user %>
       <% end %>
