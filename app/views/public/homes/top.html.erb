@@ -44,7 +44,8 @@
                   <li><b><%=link_to recipe.title, recipe_path(recipe) %></b></li>
                   <li><%= render "public/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
                   <li>
-                    <%= render "public/favorites/favorite_btn", recipe: recipe %>/コメント<%= recipe.comments.count %>件
+                    <span id="favorite_btn_<%= recipe.id %>"><%= render "public/favorites/favorite_btn", recipe: recipe %></span>
+                    /コメント<%= recipe.comments.count %>件
                   </li>
                 <ul>
               </div>

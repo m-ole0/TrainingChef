@@ -16,7 +16,7 @@
               <%= render "public/recipes/recipe_tag", recipe_tags: @recipe_tags %>
               <!--いいね数とコメント数表示-->
               <li>
-                <%= render "public/favorites/favorite_btn", recipe: @recipe %>/コメント<%= @recipe.comments.count %>件
+                <span id="favorite_btn_<%= @recipe.id %>"><%= render "public/favorites/favorite_btn", recipe: @recipe %></span>/コメント<%= @recipe.comments.count %>件
               </li>
             <ul>
           </div>

@@ -10,7 +10,7 @@
             <td><%= link_to "編集する", edit_user_path, class: 'btn btn-primary ml-4' %></td>
             <td><%= link_to "いいねしたレシピ", favorite_recipes_user_path(@user), class: 'btn btn-success ml-4' %></td>
           <% else %>
-            <td><%= render "public/relationships/follow_btn", user: @user %></td>
+            <td id="follow_btn_<%= @user.id %>"><%= render "public/relationships/follow_btn", user: @user %></td>
           <% end %>
         </tr>
         <tr>

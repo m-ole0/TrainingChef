@@ -39,6 +39,9 @@ Rails.application.routes.draw do
         get :check
       end
     end
+    resources :tags, only:[] do
+      get 'search_tag' => 'recipes#search_tag'
+    end
   end
 
 # 管理者用ルーティング

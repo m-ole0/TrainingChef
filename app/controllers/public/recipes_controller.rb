@@ -62,6 +62,12 @@ class Public::RecipesController < ApplicationController
     @users = recipe.favorited_users
   end
 
+  def search_tag
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @recipes = @tag.recipes.all
+  end
+
   private
 
   def recipe_params

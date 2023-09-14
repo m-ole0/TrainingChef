@@ -2,7 +2,11 @@
   <div class="row">
     <div class="col-7 mx-auto">
       <!--フォローしているユーザーのレシピ一覧-->
-      <%= render 'public/recipes/recipe_index', recipes: @following_recipes %>
+      <% if @following_recipes.present? %>
+        <%= render 'public/recipes/recipe_index', recipes: @following_recipes %>
+      <% else %>
+        <h4 class="mt-5 text-center">フォローしているユーザーの投稿がありません</h4>
+      <% end %>
     </div>
   </div>
 </div>
