@@ -1,19 +1,19 @@
 <table class="table table-bordered">
   <% users.each do |user| %>
-  <tr style="height: 60px;">
-    <td style="width: 20%;">
-      <%= link_to user_path(user) do %>
-        <%= image_tag user.get_profile_image, class: "rounded-circle", style:"width: 50px; height: 50px;" %>
-      <% end %>
-    </td>
-    <td style="width: 50%;">
-      <%= link_to user.name, user_path(user) %>
-    </td>
-    <td id="follow_btn_<%= user.id %>" style="width: 30%;">
-      <% if user != current_user %>
-        <%= render "public/relationships/follow_btn", user: user %>
-      <% end %>
-    </td>
-  </tr>
+    <tr style="height: 60px;">
+      <td style="width: 20%;">
+        <%= link_to user_path(user) do %>
+          <%= image_tag user.get_profile_image, class: "rounded-circle", style:"width: 50px; height: 50px;" %>
+        <% end %>
+      </td>
+      <td style="width: 50%;">
+        <%= link_to user.name, user_path(user) %>
+      </td>
+      <td id="follow_btn_<%= user.id %>" style="width: 30%;">
+        <% if user != current_user %>
+          <%= render "public/relationships/follow_btn", user: user %>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
 </table>
