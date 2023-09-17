@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-7 mx-2 mx-auto text-center">
+    <div class="col-7 mx-2 mx-auto text-center mt-5">
       <!--エラー文-->
       <% if @user.errors.any? %>
         <ul class="alert alert-danger" role="alert">
@@ -13,7 +13,7 @@
         </ul>
       <% end %>
       <!--入力フォーム-->
-      <%= form_with model:  @user, url: admin_user_path, method: :patch, local: true do |f| %>
+      <%= form_with model: @user, url: admin_user_path, method: :patch, local: true do |f| %>
         <table class="table table-borderless">
           <tr>
             <td>

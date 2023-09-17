@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7 mx-auto">
+      <!--レシピ内容表示-->
+      <div class="card mt-2">
+        <div class="card-header text-center">
+          <%= image_tag @recipe.recipe_image, style:"width: 100%; object-fit: cover;" %>
+        </div>
+        <div class="card-body" style="display: flex; align-items: center;">
+          <div><%= image_tag @recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px;" %></div>
+          <div>
+            <ul style="list-style: none;">
+              <li><%= @recipe.user.name %></li>
+              <li><b><%= @recipe.title %></b></li>
+              <!--タグ表示URLなし-->
+              <% if @recipe.tags.present? %>
+                <li>
+                  <% @recipe.tags.each do |tag| %>
+                    <i class="fa-sharp fa-solid fa-tag"></i>
+                    <%= tag.name %>
+                  <% end %>
+                </li>
+              <% end %>
+              <li>
+                ♥<%= @recipe.favorites.count %>件/コメント<%= @recipe.comments.count %>件
+              </li>
+            <ul>
+          </div>
+        </div>
+      </div>
+    <!--確認フォーム-->
+      <div class="text-center mt-4 mb-5">
+        <h4 class="mt-4">本当にレシピを削除しますか？</h4>
+        <div><%= link_to "レシピページに戻る", admin_recipe_path(@recipe), class:"btn btn-success" %><%= link_to "レシピを削除する", admin_recipe_path(@recipe), method: :delete, class:"btn btn-danger ml-4" %></div>
+      </div>
+    </div>
+  </div>
+</div>

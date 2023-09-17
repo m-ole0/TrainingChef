@@ -1,2 +1,37 @@
-<h1>Admin::Tags#edit</h1>
-<p>Find me in app/views/admin/tags/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-7 mx-auto mt-5">
+      <!--エラー文-->
+      <div>
+        <% if @tag.errors.any? %>
+          <ul class="alert alert-danger" role="alert">
+            <h6 class="alert-heading">
+              <%= @tag.errors.count %>件のエラーが発生しました
+            </h6>
+            <% @tag.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <!--入力フォーム-->
+      <div class="text-center">
+        <%= form_with model: @tag, url: admin_tag_path, local: true, method: :patch do |f| %>
+          <table class="table table-borderless">
+            <tr>
+              <td>
+                <%= f.label :name, "タグ名" %>
+              </td>
+              <td>
+                <%= f.text_field :name, class:"form-control" %>
+              </td>
+            </tr>
+          </table>
+        <!--保存ボタン。削除確認ボタン-->
+          <%= f.submit "編集内容を保存", class:"btn btn-success mt-4" %>
+          <%= link_to "タグを削除する", check_admin_tag_path(@tag), class:"btn btn-danger mt-4" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

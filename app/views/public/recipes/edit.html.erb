@@ -16,7 +16,7 @@
         </ul>
       <% end %>
        <!--入力フォーム-->
-      <%= form_with model: @recipe, usrl: recipe_path, method: :patch, local: true do |f| %>
+      <%= form_with model: @recipe, url: recipe_path, method: :patch, local: true do |f| %>
       <table class="table table-borderless">
         <tr>
           <td>

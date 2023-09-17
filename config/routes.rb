@@ -48,8 +48,16 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :recipes, except: [:new, :create] do
       resources :comments, only: [:destroy]
+      member do
+        get :check
+      end
     end
-    resources :tags, only: [:index, :edit, :update, :destroy]
+    resources :tags, only: [:index, :edit, :update, :destroy] do
+      member do
+        get :check
+      end
+      get 'search_tag' => 'recipes#search_tag'
+    end
     resources :users, except: [:new, :create] do
       member do
         get "check"

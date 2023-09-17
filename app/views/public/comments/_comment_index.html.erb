@@ -10,7 +10,7 @@
       </ul>
     </div>
   </div>
-  <% if comment.user == current_user %>
+  <% if comment.user == current_user || admin_signed_in? %>
     <div class="text-right mt-1">
       <%= link_to "削除する", recipe_comment_path(comment.recipe, comment), method: :delete, remote: true, class:"btn btn-danger" %>
     </div>
