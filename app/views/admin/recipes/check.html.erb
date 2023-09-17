@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-7 mx-auto">
+    <div class="col-12 col-sm-7 mx-auto">
       <!--レシピ内容表示-->
       <div class="card mt-2">
         <div class="card-header text-center">
@@ -31,7 +31,7 @@
     <!--確認フォーム-->
       <div class="text-center mt-4 mb-5">
         <h4 class="mt-4">本当にレシピを削除しますか？</h4>
-        <div><%= link_to "レシピページに戻る", admin_recipe_path(@recipe), class:"btn btn-success" %><%= link_to "レシピを削除する", admin_recipe_path(@recipe), method: :delete, class:"btn btn-danger ml-4" %></div>
+        <div><%= link_to "レシピページに戻る", admin_recipe_path(@recipe), class:"btn btn-success mt-3" %><%= link_to "レシピを削除する", admin_recipe_path(@recipe), method: :delete, class:"btn btn-danger mt-3" %></div>
       </div>
     </div>
   </div>

@@ -1,43 +1,45 @@
 <div class="container">
   <div class="row">
-    <div class="col-7 mx-auto">
-        <div class="card-header text-center">
-          <%= image_tag @recipe.recipe_image, style:"width: 100%; object-fit: cover;" %>
+    <div class="col-12 col-sm-7 mx-auto">
+      <div class="card-header text-center">
+        <%= image_tag @recipe.recipe_image, style:"width: 100%; object-fit: cover;" %>
+      </div>
+      <div class="card-body mx-4" style="display: flex; align-items: center;">
+        <div>
+          <%= image_tag @recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px;" %>
         </div>
-        <div class="card-body mx-4" style="display: flex; align-items: center;">
-          <div><%= image_tag @recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px;" %></div>
-          <div>
-            <ul style="list-style: none;">
-              <li><%=link_to @recipe.user.name, admin_user_path(@recipe.user) %></li>
-              <li><b><%= @recipe.title %></b></li>
-
-              <!--レシピに追加されたタグを表示-->
-              <%= render "admin/recipes/recipe_tag", recipe_tags: @recipe_tags %>
-              <!--いいね数とコメント数表示-->
-              <li>
-                ♥<%= @recipe.favorites.count %>件/コメント<%= @recipe.comments.count %>件</span>
-              </li>
-            <ul>
-          </div>
+        <div>
+          <ul style="list-style: none;">
+            <li><%=link_to @recipe.user.name, admin_user_path(@recipe.user) %></li>
+            <li><b><%= @recipe.title %></b></li>
+            <!--レシピに追加されたタグを表示-->
+            <%= render "admin/recipes/recipe_tag", recipe_tags: @recipe_tags %>
+            <!--いいね数とコメント数表示-->
+            <li>
+              ♥<%= @recipe.favorites.count %>件/コメント<%= @recipe.comments.count %>件</span>
+            </li>
+          <ul>
         </div>
-        <div class="card-text mx-4 mb-3">
-          <p style="margin-bottom: 0;">材料</p>
-          <div style="border: 1px solid #ccc;">
-            <%= @recipe.material %>
-          </div>
-          <p style="margin-bottom: 0;">手順</p>
-          <div style="border: 1px solid #ccc;">
-            <%= @recipe.process %>
-          </div>
-          <div class="text-right mt-2">
-            <%= link_to "編集", edit_admin_recipe_path(@recipe), class:"btn btn-success" %>
-            <%= link_to "削除", check_admin_recipe_path(@recipe), class:"btn btn-danger ml-4" %>
-          </div>
+      </div>
+      <div class="card-text mx-4 mb-3">
+        <p style="margin-bottom: 0;">材料</p>
+        <div style="border: 1px solid #ccc;">
+          <%= @recipe.material %>
+        </div>
+        <p style="margin-bottom: 0;">手順</p>
+        <div style="border: 1px solid #ccc;">
+          <%= @recipe.process %>
+        </div>
+        <div class="text-right mt-2">
+          <%= link_to "編集", edit_admin_recipe_path(@recipe), class:"btn btn-success" %>
+          <%= link_to "削除", check_admin_recipe_path(@recipe), class:"btn btn-danger ml-4" %>
+        </div>
 
-          <!--コメント一覧-->
-          <div id="comment_index" class="mt-4">
-            <%= render 'public/comments/comment_index', recipe: @recipe %>
-          </div>
+        <!--コメント一覧-->
+        <div id="comment_index" class="mt-4">
+          <%= render 'public/comments/comment_index', recipe: @recipe %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

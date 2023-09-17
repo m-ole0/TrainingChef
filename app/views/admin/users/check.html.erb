@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row mx-auto">
-    <div class="col-7 col-sm-2 mx-auto text-center">
+  <div class="row">
+    <div class="col-12 col-sm-10 col-md-7 mx-auto text-center">
       <div class="mt-5">
         <%= image_tag @user.get_profile_image, class: "rounded-circle", style:"width: 300px; height: 300px;" %>
       </div>
@@ -11,7 +11,7 @@
         これまでの投稿履歴が削除されます。</br>
         退会する場合は「アカウントを削除する」をクリックしてください。
       </p>
-      <div><%= link_to "ユーザーページへ戻る", admin_user_path(@user), class:"btn btn-success mt-4" %> <%= link_to "アカウントを削除する",  admin_user_path(@user), method: :delete ,class:"btn btn-danger ml-4 mt-4" %></div>
+      <div><%= link_to "ユーザーページへ戻る", admin_user_path(@user), class:"btn btn-success mt-4" %> <%= link_to "アカウントを削除する",  admin_user_path(@user), method: :delete ,class:"btn btn-danger mt-4" %></div>
     </div>
   </div>
 </div>

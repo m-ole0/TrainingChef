@@ -1,23 +1,23 @@
 <div class="container">
   <!--プロフィール表示-->
   <div class="row">
-    <div class="col-7 mx-auto">
+    <div class="col-12 col-sm-8 col-md-7 mx-auto">
       <table class="table table-borderless mt-5">
         <tr>
-          <td class="text-center align-middle">プロフィール画像</td>
-          <td class="align-middle"><%= image_tag @user.get_profile_image, style:"width: 200px; height: 200px;" %></td>
+          <td class="text-center align-middle" style="width: 35%">プロフィール画像</td>
+          <td class="align-middle" style="width: 65%"><%= image_tag @user.get_profile_image, style:"width: 200px; height: 200px;" %></td>
         </tr>
         <tr>
-          <td class="text-center">ユーザー名</td>
-          <td><%= @user.name %></td>
+          <td class="text-center align-middle">ユーザー名</td>
+          <td class="align-middle"><%= @user.name %></td>
         </tr>
         <tr>
-          <td class="text-center">メールアドレス</td>
-          <td><%= @user.email %></td>
+          <td class="text-center align-middle">メールアドレス</td>
+          <td class="align-middle"><%= @user.email %></td>
         </tr>
         <tr>
-          <td class="text-center">自己紹介文</td>
-          <td><%= @user.introduction %></td>
+          <td class="text-center align-middle">自己紹介文</td>
+          <td class="align-middle"><%= @user.introduction %></td>
         </tr>
       </table>
       <div class="text-center">
