@@ -1,16 +1,26 @@
 <div class="container">
   <!--プロフィール表示-->
   <div class="row">
-    <div class="col text-center">
-      <table class="table table-borderless mx-auto mt-5", style="width: 70%;">
+    <div class="col-12 col-lg-8 mx-auto text-center">
+      <table class="table table-borderless mx-auto mt-5">
         <tr>
-          <td rowspan="2" class="align-middle"><%= image_tag @user.get_profile_image, class: "rounded-circle", style:"width: 100px; height: 100px;" %></td>
-          <td><h5><%= @user.name %></h5></td>
+          <td rowspan="2" class="align-middle" style="width:25%">
+            <%= image_tag @user.get_profile_image, class: "rounded-circle", style:"width: 100px; height: 100px;" %>
+          </td>
+          <td class="align-middle" style="width:25%">
+            <h5><%= @user.name %></h5>
+          </td>
           <% if @user == current_user %>
-            <td><%= link_to "編集する", edit_user_path, class: 'btn btn-primary ml-4' %></td>
-            <td><%= link_to "いいねしたレシピ", favorite_recipes_user_path(@user), class: 'btn btn-success ml-4' %></td>
+            <td class="align-middle" style="width:25%">
+              <%= link_to "編集する", edit_user_path, class: 'btn btn-primary ml-4' %>
+            </td>
+            <td class="align-middle" style="width:25%">
+              <%= link_to "いいねしたレシピ", favorite_recipes_user_path(@user), class: 'btn btn-success ml-4' %>
+            </td>
           <% else %>
-            <td id="follow_btn_<%= @user.id %>"><%= render "public/relationships/follow_btn", user: @user %></td>
+            <td id="follow_btn_<%= @user.id %>">
+              <%= render "public/relationships/follow_btn", user: @user %>
+            </td>
           <% end %>
         </tr>
         <tr>
@@ -28,11 +38,14 @@
       </table>
     </div>
   </div>
-
   <!--投稿一覧-->
   <div class="row">
-    <div class="col-7 mx-auto">
+    <% if @recipes.present? %>
       <%= render 'public/recipes/recipe_index', recipes: @recipes %>
-    </div>
+    <% else %>
+      <div class="mx-auto">
+        <h4 class="text-center mt-2">投稿はありません。</h4>
+      </div>
+    <% end %>
   </div>
 </div>

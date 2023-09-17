@@ -1,9 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-7 mx-auto">
-      <!--いいねしたレシピ一覧-->
+    <% if @favorite_recipes.present? %>
+    <!--いいねしたレシピ一覧-->
       <%= render 'public/recipes/recipe_index', recipes: @favorite_recipes %>
-    </div>
+    <% else %>
+      <div class="mx-auto">
+        <h4 class="text-center mt-5">いいねした投稿はありません。</h4>
+      </div>
+    <% end %>
   </div>
 </div>
 

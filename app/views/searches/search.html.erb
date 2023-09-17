@@ -2,8 +2,8 @@
   <div class="row">
     <!--ユーザー検索時の表示-->
     <% if @model == 'user' %>
-      <div class="col-7 mx-auto text-center mt-5">
-        <h4>ユーザー名に"<%= @content %>"を含むユーザー一覧</h4>
+      <div class="col-12 col-lg-8 mx-auto text-center mt-5">
+        <h4>ユーザー名に"<%= @content %>"を含むユーザー一覧(<%= @records.count %>件)</h4>
           <% if @records.present? %>
             <%= render 'public/users/index', users: @records %>
           <% else %>
@@ -12,22 +12,20 @@
       </div>
     <!--レシピ検索時の表示-->
     <% elsif @model == 'recipe' %>
-      <div class="col-7 mx-auto text-center mt-5">
-        <h4>レシピ名に"<%= @content %>"を含むレシピ一覧</h4>
-          <% if @records.present? %>
-            <%= render 'public/recipes/recipe_index', recipes: @records %>
-          <% else %>
-            <h4 class="mt-5">レシピ名に"<%= @content %>"を含むレシピは存在しません</h4>
-          <% end %>
-      </div>
+      <% if @records.present? %>
+      <div class="col-12 text-center mt-5"><h4>レシピ名に"<%= @content %>"を含む投稿一覧(<%= @records.count %>件)</h4></div>
+        <%= render 'public/recipes/recipe_index', recipes: @records %>
+      <% else %>
+        <h4 class="mx-auto mt-5">レシピ名に"<%= @content %>"を含むレシピは存在しません</h4>
+      <% end %>
     <!--タグ検索時の表示-->
     <% else %>
-      <div class="col-7 mx-auto text-center mt-5">
-        <h4>タグ名に"<%= @content %>"を含むレシピ一覧</h4>
+      <div class="col-12 col-lg-7 mx-auto text-center mt-5 mb-4">
+        <h4>タグ名に"<%= @content %>"を含むタグ一覧(<%= @records.count %>件)</h4>
           <% if @records.present? %>
             <%= render 'public/recipes/tag_index', tags: @records %>
           <% else %>
-            <h4 class="mt-5">タグ名に"<%= @content %>"を含むレシピは存在しません</h4>
+            <h4 class="mt-5">タグ名に"<%= @content %>"を含むタグは存在しません</h4>
           <% end %>
       </div>
     <% end %>

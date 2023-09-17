@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-7 mx-auto text-center mt-5">
+    <div class="col-sm-12 col-md-8 col-lg-6 mx-auto text-center mt-5">
       <!--エラー文-->
       <% if @recipe.errors.any? %>
         <ul class="alert alert-danger" role="alert">
@@ -16,24 +16,24 @@
       <%= form_with model: @recipe, url: recipes_path, method: :post, local: true do |f| %>
         <table class="table table-borderless">
           <tr>
-            <td><%= f.label :recipe_image, "レシピ画像" %></td>
-            <td class="text-left"><%= f.file_field :recipe_image, accept: "image/*" %></td>
+            <td class="align-middle" style="width:35%"><%= f.label :recipe_image, "レシピ画像" %></td>
+            <td class="align-middle text-left" style="width:65%"><%= f.file_field :recipe_image, accept: "image/*" %></td>
           </tr>
           <tr>
-            <td><%= f.label :title, "レシピ名" %></td>
-            <td><%= f.text_field :title, class:"form-control", placeholder:"レシピ名を入力してください。" %></td>
+            <td class="align-middle"><%= f.label :title, "レシピ名" %></td>
+            <td class="align-middle"><%= f.text_field :title, class:"form-control", placeholder:"レシピ名を入力してください。" %></td>
           </tr>
           <tr>
-            <td><%= f.label :material, "材料" %></td>
-            <td><%= f.text_area :material, class:"form-control", placeholder:"材料(分量)を入力してください。"  %></td>
+            <td class="align-middle"><%= f.label :material, "材料" %></td>
+            <td class="align-middle"><%= f.text_area :material, class:"form-control", placeholder:"材料(分量)を入力してください。"  %></td>
           </tr>
           <tr>
-            <td><%= f.label :process, "手順説明" %></td>
-            <td><%= f.text_area :process, class:"form-control", placeholder:"手順を入力してください。" %></td>
+            <td class="align-middle"><%= f.label :process, "手順説明" %></td>
+            <td class="align-middle"><%= f.text_area :process, class:"form-control", placeholder:"手順を入力してください。" %></td>
           </tr>
           <tr>
-            <td><%= f.label :name, "タグ" %></td>
-            <td><%= f.text_field :name, value: @tag_list, class:"form-control", placeholder:"タグは,で区切ると複数タグ追加できます。" %></td>
+            <td class="align-middle"><%= f.label :name, "タグ" %></td>
+            <td class="align-middle"><%= f.text_field :name, value: @tag_list, class:"form-control", placeholder:"タグは,で区切ると複数タグ追加できます。" %></td>
           </tr>
         </table>
         <%= f.submit "レシピを投稿する", class:"btn btn-success mt-4" %>
