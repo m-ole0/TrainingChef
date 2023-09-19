@@ -3,5 +3,8 @@
     <div class="col-12 col-lg-7 mx-auto mt-5">
       <%= render 'admin/tags/index', tags: @tags %>
     </div>
+    <div class="col-12 d-flex justify-content-center my-4">
+      <%= paginate @tags %>
+    </div>
   </div>
 </div>

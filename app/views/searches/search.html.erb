@@ -5,13 +5,16 @@
       <% if @records.present? %>
         <% if user_signed_in? %>
           <div class="col-12 col-lg-8 mx-auto text-center mt-5">
-            <h4>ユーザー名に"<%= @content %>"を含むユーザー一覧(<%= @records.count %>件)</h4>
+            <h4>ユーザー名に"<%= @content %>"を含むユーザー一覧(<%= @result_all.count %>件)</h4>
               <%= render 'public/users/index', users: @records %>
           </div>
         <% elsif admin_signed_in? %>
           <div class="col-12 col-lg-8 mx-auto mt-5">
-            <h4 class="text-center">ユーザー名に"<%= @content %>"を含むユーザー一覧(<%= @records.count %>件)</h4>
+            <h4 class="text-center">ユーザー名に"<%= @content %>"を含むユーザー一覧(<%= @result_all.count %>件)</h4>
               <%= render 'admin/users/index', users: @records %>
+          </div>
+          <div class="col-12 d-flex justify-content-center my-4">
+            <%= paginate @records %>
           </div>
         <% end %>
       <% else %>
@@ -21,12 +24,15 @@
     <% elsif @model == 'recipe' %>
       <% if @records.present? %>
         <% if user_signed_in? %>
-          <div class="col-12 text-center mt-5"><h4>レシピ名に"<%= @content %>"を含む投稿一覧(<%= @records.count %>件)</h4></div>
+          <div class="col-12 text-center mt-5"><h4>レシピ名に"<%= @content %>"を含む投稿一覧(<%= @result_all.count %>件)</h4></div>
             <%= render 'public/recipes/recipe_index', recipes: @records %>
         <% elsif admin_signed_in? %>
-          <div class="col-12 text-center mt-5"><h4>レシピ名に"<%= @content %>"を含む投稿一覧(<%= @records.count %>件)</h4></div>
+          <div class="col-12 text-center mt-5"><h4>レシピ名に"<%= @content %>"を含む投稿一覧(<%= @result_all.count %>件)</h4></div>
           <%= render 'admin/recipes/index', recipes: @records %>
         <% end %>
+        <div class="col-12 d-flex justify-content-center my-4">
+          <%= paginate @records %>
+        </div>
       <% else %>
         <h4 class="mx-auto mt-5">レシピ名に"<%= @content %>"を含むレシピは存在しません</h4>
       <% end %>
@@ -35,14 +41,17 @@
       <% if @records.present? %>
         <% if user_signed_in? %>
           <div class="col-12 col-lg-7 mx-auto text-center mt-5 mb-4">
-            <h4>タグ名に"<%= @content %>"を含むタグ一覧(<%= @records.count %>件)</h4>
+            <h4>タグ名に"<%= @content %>"を含むタグ一覧(<%= @result_all.count %>件)</h4>
               <%= render 'public/recipes/tag_index', tags: @records %>
         <% elsif admin_signed_in? %>
-        <div class="col-12 text-center mt-5"><h4>タグ名に"<%= @content %>"を含むタグ一覧(<%= @records.count %>件)</h4></div>
+        <div class="col-12 text-center mt-5"><h4>タグ名に"<%= @content %>"を含むタグ一覧(<%= @result_all.count %>件)</h4></div>
           <div class="col-12 col-lg-7 mx-auto">
             <%= render 'admin/tags/index', tags: @records %>
           </div>
         <% end %>
+        <div class="col-12 d-flex justify-content-center my-4">
+          <%= paginate @records %>
+        </div>
       <% else %>
         <h4 class="mt-5 mx-auto">タグ名に"<%= @content %>"を含むタグは存在しません</h4>
       <% end %>

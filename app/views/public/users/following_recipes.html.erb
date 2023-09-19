@@ -27,6 +27,9 @@
             </div>
           </div>
         <% end %>
+        <div class="col-12 d-flex justify-content-center my-4">
+          <%= paginate @following_recipes %>
+        </div>
       <% else %>
         <h4 class="mt-5 text-center">フォローしているユーザーの投稿がありません</h4>
       <% end %>

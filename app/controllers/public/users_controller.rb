@@ -1,7 +1,8 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @recipes = @user.recipes
+    @recipes = @user.recipes.page(params[:page])
+    @recipes_all = @user.recipes
   end
 
   def edit
@@ -21,12 +22,12 @@ class Public::UsersController < ApplicationController
   def favorite_recipes
     user = current_user
     favorites = Favorite.where(user_id: user.id).pluck(:recipe_id)
-    @favorite_recipes = Recipe.find(favorites)
+    @favorite_recipes = Recipe.where(id: favorites).page(params[:page])
   end
 
   def following_recipes
     user = current_user
-    @following_recipes = Recipe.where(user_id: user.following_users)
+    @following_recipes = Recipe.where(user_id: user.following_users).page(params[:page]).per(5)
   end
 
   def check

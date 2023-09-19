@@ -20,7 +20,8 @@ class Public::RecipesController < ApplicationController
   def index
     to = Time.current.at_end_of_day
     from = 1.week.ago.at_beginning_of_day
-    @recipes = Recipe.includes(:favorites).sort_by { |recipe| -recipe.favorites.where(created_at: from...to).count }
+    sorted_recipes = Recipe.includes(:favorites).sort_by { |recipe| -recipe.favorites.where(created_at: from...to).count }
+    @recipes = Kaminari.paginate_array(sorted_recipes).page(params[:page]).per(5)
   end
 
   def show
