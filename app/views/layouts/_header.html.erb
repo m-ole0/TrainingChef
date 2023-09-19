@@ -3,7 +3,7 @@
     <div class="container">
       <a class="navbar-brand" href="/"><span>TrainingChef</span></a>
 
-      <% if user_signed_in? %>
+      <% if user_signed_in? || admin_signed_in? %>
         <%= render 'layouts/search_form' %>
       <% end %>
 

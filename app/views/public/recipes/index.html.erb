@@ -13,7 +13,7 @@
           <% end %>
         </h2>
         <% if user_signed_in? %>
-        <!--ログインしているときはユーザー情報のリンクを表示-->
+        <!--ユーザーログイン時はユーザー情報のリンクを表示-->
           <div class="card mt-2 mb-2">
             <div class="card-header text-center">
               <%= link_to recipe_path(recipe) do %>
@@ -32,6 +32,30 @@
                   <li><b><%=link_to recipe.title, recipe_path(recipe) %></b></li>
                   <li><%= render "public/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
                   <li><span id="favorite_btn_<%= recipe.id %>"><%= render "public/favorites/favorite_btn", recipe: recipe %></span>/コメント<%= recipe.comments.count %>件</li>
+                <ul>
+              </div>
+            </div>
+          </div>
+        <% elsif %>
+        <!--管理者ログイン時は管理者用リンクを表示-->
+          <div class="card mt-2 mb-2">
+            <div class="card-header text-center">
+              <%= link_to admin_recipe_path(recipe) do %>
+                <%= image_tag recipe.recipe_image, style:"width: 100%; object-fit: cover;" %>
+              <% end %>
+            </div>
+            <div class="card-body" style="display: flex; align-items: center;">
+              <div>
+                <%= link_to admin_user_path(recipe.user) do %>
+                  <%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px;" %>
+                <% end %>
+              </div>
+              <div>
+                <ul style="list-style: none;">
+                  <li><%=link_to recipe.user.name, admin_user_path(recipe.user) %></li>
+                  <li><b><%=link_to recipe.title, admin_recipe_path(recipe) %></b></li>
+                  <li><%= render "admin/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
+                  <li>♥<%= recipe.favorites.count %>件/コメント<%= recipe.comments.count %>件</li>
                 <ul>
               </div>
             </div>
