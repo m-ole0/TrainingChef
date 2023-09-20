@@ -29,11 +29,11 @@
         <div class="card-text mx-4 mb-3">
           <p style="margin-bottom: 0;">材料</p>
           <div style="border: 1px solid #ccc;">
-            <%= @recipe.material %>
+            <%= safe_join(@recipe.material.split("\n"),tag(:br))%>
           </div>
           <p style="margin-bottom: 0;">手順</p>
           <div style="border: 1px solid #ccc;">
-            <%= @recipe.process %>
+            <%= safe_join(@recipe.process.split("\n"),tag(:br))%>
           </div>
           <% if @recipe.user == current_user %>
             <div class="text-right mt-2">

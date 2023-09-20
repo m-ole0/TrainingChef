@@ -2,16 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-6 mx-auto text-center mt-5">
       <!--エラー文-->
-      <% if @recipe.errors.any? %>
-        <ul class="alert alert-danger" role="alert">
-          <h6 class="alert-heading">
-            <%= @recipe.errors.count %>件のエラーが発生しました
-          </h6>
-      <% @recipe.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-        </ul>
-      <% end %>
+      <%= render "layouts/errors", obj: @recipe %>
       <!--入力フォーム-->
       <%= form_with model: @recipe, url: recipes_path, method: :post, local: true do |f| %>
         <table class="table table-borderless">
@@ -28,7 +19,7 @@
             <td class="align-middle"><%= f.text_area :material, class:"form-control", placeholder:"材料(分量)を入力してください。"  %></td>
           </tr>
           <tr>
-            <td class="align-middle"><%= f.label :process, "手順説明" %></td>
+            <td class="align-middle"><%= f.label :process, "調理手順" %></td>
             <td class="align-middle"><%= f.text_area :process, class:"form-control", placeholder:"手順を入力してください。" %></td>
           </tr>
           <tr>

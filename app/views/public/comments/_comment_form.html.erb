@@ -1,3 +1,4 @@
+<div id ="comments-error"></div>
 <%= form_with model: [recipe, comment], local: false do |f| %>
   <div style="display: flex; align-items: center;">
     <%= f.text_field :comment, placeholder:"コメントを入力", class:"form-control", id:"comment_textfield" %>

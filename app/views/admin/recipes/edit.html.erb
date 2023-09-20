@@ -5,16 +5,7 @@
     </div>
     <div class="col-sm-12 col-lg-6 mx-auto text-center mt-5">
       <!--エラー文-->
-      <% if @recipe.errors.any? %>
-        <ul class="alert alert-danger" role="alert">
-          <h6 class="alert-heading">
-            <%= @recipe.errors.count %>件のエラーが発生しました
-          </h6>
-      <% @recipe.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-        </ul>
-      <% end %>
+      <%= render "layouts/errors", obj: @recipe %>
        <!--入力フォーム-->
       <%= form_with model: @recipe, url: admin_recipe_path, method: :patch, local: true do |f| %>
       <table class="table table-borderless">

@@ -1,4 +1,6 @@
 class Public::RecipesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :check, :destroy, :favorites, :search_tag]
+
   def new
     @recipe = Recipe.new
   end

@@ -2,16 +2,18 @@
   <div class="row mt-4">
     <div class="col-12 col-sm-7 mx-auto">
       <% @recipes.each_with_index do |recipe, index| %>
-      <!--いいね数１位〜３位に王冠アイコンをつける-->
-        <h2 class=" crown-icon text-center">
-          <% if index == 0 %>
-            <i class="fa-solid fa-crown" style="color: #aea219;"> 1位</i> <!-- 1位のアイコン -->
-          <% elsif index == 1 %>
-            <i class="fa-solid fa-crown" style="color: #ababab;"> 2位</i> <!-- 2位のアイコン -->
-          <% elsif index == 2 %>
-            <i class="fa-solid fa-crown" style="color: #bf8508;"> 3位</i> <!-- 3位のアイコン -->
-          <% end %>
-        </h2>
+        <!--いいね数１位〜３位に王冠アイコンをつける-->
+        <% if params[:page] == "1" || params[:page].nil? %>
+          <h2 class=" crown-icon text-center">
+            <% if index == 0 %>
+              <i class="fa-solid fa-crown" style="color: #aea219;"> 1位</i> <!-- 1位のアイコン -->
+            <% elsif index == 1 %>
+              <i class="fa-solid fa-crown" style="color: #ababab;"> 2位</i> <!-- 2位のアイコン -->
+            <% elsif index == 2 %>
+              <i class="fa-solid fa-crown" style="color: #bf8508;"> 3位</i> <!-- 3位のアイコン -->
+            <% end %>
+          </h2>
+        <% end %>
         <% if user_signed_in? %>
         <!--ユーザーログイン時はユーザー情報のリンクを表示-->
           <div class="card mt-2 mb-2">
@@ -36,7 +38,7 @@
               </div>
             </div>
           </div>
-        <% elsif %>
+        <% elsif admin_signed_in? %>
         <!--管理者ログイン時は管理者用リンクを表示-->
           <div class="card mt-2 mb-2">
             <div class="card-header text-center">

@@ -3,16 +3,7 @@
     <div class="col-12 col-lg-7 mx-auto text-center">
       <h2 class="mt-5">プロフィール編集</h2>
       <!--エラー文-->
-      <% if @user.errors.any? %>
-        <ul class="alert alert-danger" role="alert">
-          <h6 class="alert-heading">
-            <%= @user.errors.count %>件のエラーが発生しました
-          </h6>
-          <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      <% end %>
+      <%= render "layouts/errors", obj: @user %>
        <!--入力フォーム-->
       <%= form_with model: @user, usrl: user_path, method: :patch, local: true do |f| %>
       <table class="table table-borderless">

@@ -17,7 +17,7 @@
         </tr>
         <tr>
           <td class="text-center align-middle">自己紹介文</td>
-          <td class="align-middle"><%= @user.introduction %></td>
+          <td class="align-middle"><%= safe_join(@user.introduction.split("\n"),tag(:br))%></td>
         </tr>
       </table>
       <div class="text-center">

@@ -2,17 +2,8 @@
   <div class="row">
     <div class="col-12 col-sm-7 mx-auto mt-5">
       <!--エラー文-->
-      <div>
-        <% if @tag.errors.any? %>
-          <ul class="alert alert-danger" role="alert">
-            <h6 class="alert-heading">
-              <%= @tag.errors.count %>件のエラーが発生しました
-            </h6>
-            <% @tag.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        <% end %>
+      <div class="text-center">
+        <%= render "layouts/errors", obj: @tag %>
       </div>
       <!--入力フォーム-->
       <div class="text-center">

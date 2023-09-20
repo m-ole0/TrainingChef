@@ -1,9 +1,13 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @recipe = Recipe.find(params[:recipe_id])
-    comment = current_user.comments.new(comment_params)
-    comment.recipe_id = @recipe.id
-    comment.save
+    @comment = current_user.comments.new(comment_params)
+    @comment.recipe_id = @recipe.id
+    unless @comment.save
+      render 'error'
+    end
   end
 
   def destroy

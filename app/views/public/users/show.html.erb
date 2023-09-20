@@ -5,17 +5,17 @@
       <table class="table table-borderless mx-auto mt-5">
         <tr>
           <td rowspan="2" class="align-middle" style="width:25%">
-            <%= image_tag @user.get_profile_image, class: "rounded-circle", style:"width: 100px; height: 100px;" %>
+            <%= image_tag @user.get_profile_image, class: "rounded-circle", style: "max-width: 100%; height: auto; min-width: 50px;" %>
           </td>
           <td class="align-middle" style="width:25%">
             <h5><%= @user.name %></h5>
           </td>
           <% if @user == current_user %>
             <td class="align-middle" style="width:25%">
-              <%= link_to "編集", edit_user_path, class: 'btn btn-primary ml-4' %>
+              <%= link_to "編集", edit_user_path, class: 'btn btn-primary' %>
             </td>
             <td class="align-middle" style="width:25%">
-              <%= link_to "いいね", favorite_recipes_user_path(@user), class: 'btn btn-success ml-4' %>
+              <%= link_to "いいね", favorite_recipes_user_path(@user), class: 'btn btn-success' %>
             </td>
           <% else %>
             <td id="follow_btn_<%= @user.id %>">
@@ -24,14 +24,14 @@
           <% end %>
         </tr>
         <tr>
-          <td>投稿<%= @recipes_all.count %>件</td>
-          <td>フォロー<%= link_to @user.following_users.count, user_followings_path(@user)  %>人</td>
+          <td><%= @recipes_all.count %>投稿</td>
+          <td><%= link_to @user.following_users.count, user_followings_path(@user)  %>フォロー</td>
           <td id="follower_count_<%= @user.id %>"><%= render 'public/relationships/follower_count', user: @user %></td>
         </tr>
         <% if @user.introduction.present? %>
           <tr style="border: 1px solid #000;">
             <td colspan="4">
-              <%= @user.introduction %>
+              <%= safe_join(@user.introduction.split("\n"),tag(:br))%>
             </td>
           </tr>
         <% end %>

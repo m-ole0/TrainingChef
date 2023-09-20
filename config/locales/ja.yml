@@ -1,5 +1,15 @@
 ja:
   activerecord:
+    attributes:
+      comment:
+        comment: "コメント"
+      recipe:
+        title: "レシピ名"
+        material: "材料"
+        process: "調理手順"
+        recipe_image: "画像"
+      tag:
+        name: "タグ名"
     errors:
       models:
         user:
@@ -7,6 +17,7 @@ ja:
             email:
               taken: "は既に存在します"
               blank: "を入力してください"
+              invalid: "が正しくありません"
             name:
               taken: "は既に存在します"
               blank: "を入力してください"
@@ -15,14 +26,24 @@ ja:
               blank: "を入力してください"
             password_confirmation:
               confirmation: "が一致しません"
-        recipe: # recipe モデルのエラーメッセージを追加
+        recipe:
           attributes:
             recipe_image:
-              blank: "画像を選択してください。"
+              blank: "を選択してください。"
             title:
               blank: "を入力してください"
-              too_short: "レシピ名は%{count}文字以上で入力してください"
+              too_short: "は%{count}文字以上で入力してください"
+              too_long: "は%{count}文字以下で入力してください"
             material:
-              blank: "材料を入力してください"
+              blank: "を入力してください"
             process:
-              blank: "調理手順を入力してください"
+              blank: "を入力してください"
+        comment:
+          attributes:
+            comment:
+              blank: "を入力してください"
+        tag:
+          attributes:
+            name:
+              blank: "を入力してください"
+              too_long: "は50文字以内で入力してください"

@@ -14,8 +14,14 @@
   <body>
     <%= render 'layouts/header' %>
     <main>
-    <%= flash[:notice] %>
-      <%= yield %>
+      <div class = "container">
+        <div class = "row">
+          <div class = "col mx-auto mt-2">
+            <b><%= flash[:notice] %></b>
+          </div>
+        </div>
+      </div>
+        <%= yield %>
     </main>
   </body>
 </html>
