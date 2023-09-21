@@ -1,5 +1,6 @@
 class Public::RecipesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :check, :destroy, :favorites, :search_tag]
+  before_action :authenticate_user!, except: [:index]
+  before_action :is_matching_login_user, only: [:edit, :update, :check, :destroy, :favorites]
 
   def new
     @recipe = Recipe.new
@@ -8,7 +9,6 @@ class Public::RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
-
     tag_list = params[:recipe][:name].split(',')
     if @recipe.save
       @recipe.save_tags(tag_list)
@@ -68,7 +68,7 @@ class Public::RecipesController < ApplicationController
   def search_tag
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @recipes = @tag.recipes.all
+    @recipes = @tag.recipes.all.order(created_at: :desc).page(params[:page])
   end
 
   private
@@ -76,4 +76,12 @@ class Public::RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:title, :material, :process, :recipe_image)
   end
+
+  def is_matching_login_user
+    recipe = Recipe.find(params[:id])
+    unless recipe.user == current_user
+      redirect_to user_path(current_user)
+    end
+  end
+
 end

@@ -1,4 +1,6 @@
 class SearchesController < ApplicationController
+  before_action :authenticate_user!, :authenticate_admin!, only: :search
+
   def search
     @content = params[:content]
     @model = params[:model]
@@ -6,7 +8,7 @@ class SearchesController < ApplicationController
       @records = User.partial_search(@content).page(params[:page]).per(5)
       @result_all = User.partial_search(@content)
     elsif @model == 'recipe'
-      @records = Recipe.partial_search(@content).page(params[:page])
+      @records = Recipe.partial_search(@content).order(created_at: :desc).page(params[:page])
       @result_all = Recipe.partial_search(@content)
     else
       @records = Tag.partial_search(@content).page(params[:page]).per(5)

@@ -4,7 +4,9 @@
       <h4 class="text-center mt-5">"<%= @tag.name %>"タグのついた投稿(<%= @tag.recipes.count %>件)</h4>
     </div>
       <!--タグに紐づいたレシピ一覧-->
-      <%= render 'public/recipes/recipe_index', recipes: @recipes %>
+    <%= render 'public/recipes/recipe_index', recipes: @recipes %>
+    <div class="col-12 d-flex justify-content-center my-4">
+      <%= paginate @recipes %>
     </div>
   </div>
 </div>

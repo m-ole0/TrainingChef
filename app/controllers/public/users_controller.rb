@@ -1,18 +1,19 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_matching_login_user, except: [:show]
 
   def show
     @user = User.find(params[:id])
-    @recipes = @user.recipes.page(params[:page])
+    @recipes = @user.recipes.order(created_at: :desc).page(params[:page])
     @recipes_all = @user.recipes
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "ユーザー情報を更新しました。"
       redirect_to user_path(@user)
@@ -22,22 +23,22 @@ class Public::UsersController < ApplicationController
   end
 
   def favorite_recipes
-    user = current_user
+    user = User.find(params[:id])
     favorites = Favorite.where(user_id: user.id).pluck(:recipe_id)
-    @favorite_recipes = Recipe.where(id: favorites).page(params[:page])
+    @favorite_recipes = Recipe.where(id: favorites).order(created_at: :desc).page(params[:page])
   end
 
   def following_recipes
-    user = current_user
-    @following_recipes = Recipe.where(user_id: user.following_users).page(params[:page]).per(5)
+    user = User.find(params[:id])
+    @following_recipes = Recipe.where(user_id: user.following_users).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def check
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def destroy
-    @user = current_user
+    @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "ユーザーデータを削除しました。"
     redirect_to root_path
@@ -47,5 +48,12 @@ class Public::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :introduction, :email, :profile_image)
+  end
+
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to user_path(current_user)
+    end
   end
 end

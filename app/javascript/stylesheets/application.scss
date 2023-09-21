@@ -1,1 +1,22 @@
 @use '~bootstrap/scss/bootstrap';
+
+
+.recipe-title {
+  font-weight: bold;
+  display: -webkit-box;
+  width: 100%;
+  height: 1.2em;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.recipe-tags {
+  display: block;
+  width: 100%;
+  height: 1.2em; /* 3行分の高さ */
+  overflow: hidden;
+  -webkit-line-clamp: 1; /* 表示する行数 */
+  -webkit-box-orient: vertical;
+}
+
