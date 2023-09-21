@@ -1,5 +1,4 @@
 class SearchesController < ApplicationController
-  before_action :authenticate_user!, :authenticate_admin!, only: :search
 
   def search
     @content = params[:content]

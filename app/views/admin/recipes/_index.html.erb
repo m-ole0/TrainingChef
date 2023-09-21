@@ -15,8 +15,8 @@
         <div>
           <ul style="list-style: none;">
             <li><%=link_to recipe.user.name, admin_user_path(recipe.user) %></li>
-            <li><b><%=link_to recipe.title, admin_recipe_path(recipe) %></b></li>
-            <li><%= render "admin/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
+            <li><%=link_to recipe.title, admin_recipe_path(recipe), class:"recipe-title" %></li>
+            <li class="mt-1"><%= render "admin/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
             <li>
               ♥<%= recipe.favorites.count %>件/コメント<%= recipe.comments.count %>件
             </li>

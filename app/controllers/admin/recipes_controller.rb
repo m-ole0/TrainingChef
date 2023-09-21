@@ -2,7 +2,7 @@ class Admin::RecipesController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @recipes = Recipe.all.page(params[:page])
+    @recipes = Recipe.all.order(created_at: :desc).page(params[:page])
   end
 
   def show
@@ -41,7 +41,7 @@ class Admin::RecipesController < ApplicationController
   def search_tag
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @recipes = @tag.recipes.all
+    @recipes = @tag.recipes.all.order(created_at: :desc).page(params[:page])
   end
 
   private

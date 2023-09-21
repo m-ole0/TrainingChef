@@ -1,5 +1,5 @@
 <% recipes.each do |recipe| %>
-  <div class="col-lg-4 col-md-6">
+  <div class="col-lg-4 col-md-6 mx-auto">
     <div class="card mb-3" style="height:500px">
       <div class="card-header text-center">
         <%= link_to recipe_path(recipe) do %>
@@ -13,10 +13,10 @@
           <% end %>
         </div>
         <div>
-          <ul style="list-style: none;">
+          <ul style="list-style: none; padding-left: 20px;">
             <li><%=link_to recipe.user.name, user_path(recipe.user) %></li>
             <li><%=link_to recipe.title, recipe_path(recipe), class:"recipe-title" %></li>
-            <li><%= render "public/recipes/recipe_tag", recipe_tags: recipe.tags, class: "recipe-tags" %></li>
+            <li class="mt-1"><%= render "public/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
             <li><span id="favorite_btn_<%= recipe.id %>"><%= render "public/favorites/favorite_btn", recipe: recipe %></span>/コメント<%= recipe.comments.count %>件</li>
           <ul>
         </div>

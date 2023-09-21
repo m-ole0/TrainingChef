@@ -16,7 +16,16 @@
               <li><%=link_to @recipe.user.name, admin_user_path(@recipe.user) %></li>
               <li><b><%= @recipe.title %></b></li>
               <!--レシピに追加されたタグを表示-->
-              <%= render "admin/recipes/recipe_tag", recipe_tags: @recipe_tags %>
+              <li>
+                <% if @recipe_tags.present? %>
+                  <% @recipe_tags.each do |tag| %>
+                    <div>
+                      <i class="fa-sharp fa-solid fa-tag"></i>
+                      <%= link_to tag.name, admin_tag_search_tag_path(tag) %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </li>
               <!--いいね数とコメント数表示-->
               <li>
                 ♥<%= @recipe.favorites.count %>件/コメント<%= @recipe.comments.count %>件</span>
