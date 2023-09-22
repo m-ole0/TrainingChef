@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :is_matching_login_user, except: [:show]
+  before_action :ensure_normal_user, only: [:update, :destroy]
 
   def show
     @user = User.find(params[:id])
@@ -56,4 +57,13 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+
+  def ensure_normal_user
+    user = current_user
+    if user.email == 'guest@example.com'
+      flash[:notice] = "ゲストユーザーの更新・削除はできません"
+      redirect_to user_path(user)
+    end
+  end
+
 end
