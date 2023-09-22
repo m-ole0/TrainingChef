@@ -2,7 +2,7 @@
     <% recipe_tags.limit(3).each do |tag| %>
       <div class="d-flex justify-content-start">
         <i class="fa-sharp fa-solid fa-tag "></i>
-        <%= link_to tag.name, tag_search_tag_path(tag), class: "recipe-tags" %>
+        <%= link_to tag.name, tag_search_tag_path(tag), class: "recipe-tags recipe-tags-link" %>
       </div>
     <% end %>
 <% end %>

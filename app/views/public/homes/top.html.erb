@@ -46,8 +46,8 @@
               </div>
               <div>
                 <ul style="list-style: none;">
-                  <li><%=link_to recipe.user.name, user_path(recipe.user) %></li>
-                  <li><%=link_to recipe.title, recipe_path(recipe), class:"recipe-title" %></li>
+                  <li><%=link_to recipe.user.name, user_path(recipe.user), class:"user-name-link" %></li>
+                  <li><%=link_to recipe.title, recipe_path(recipe), class:"recipe-title recipe-title-link" %></li>
                   <li class="mt-1"><%= render "public/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
                   <li>
                     <span id="favorite_btn_<%= recipe.id %>"><%= render "public/favorites/favorite_btn", recipe: recipe %></span>
@@ -114,9 +114,9 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-12 col-md-7 mx-auto text-right">
+    <div class="col-lg-12 col-md-7 mx-auto text-right mb-5">
       <%= link_to recipes_ranking_path do %>
-        <p><i class="fa-regular fa-hand-point-right"></i>人気ランキングをもっと見る</p>
+        <p class="ranking-link"><i class="fa-regular fa-hand-point-right"></i>人気ランキングをもっと見る</p>
       <% end %>
     </div>
   </div>

@@ -62,7 +62,7 @@ class Public::RecipesController < ApplicationController
 
   def favorites
     recipe = Recipe.find(params[:id])
-    @users = recipe.favorited_users
+    @users = recipe.favorited_users.page(params[:page]).per(5)
   end
 
   def search_tag

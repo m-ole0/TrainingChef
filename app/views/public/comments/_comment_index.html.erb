@@ -8,14 +8,14 @@
       </div>
       <div>
         <ul style="list-style: none;">
-          <li><%= link_to comment.user.name, user_path(comment.user) %></li>
+          <li><%= link_to comment.user.name, user_path(comment.user), class:"user-name-link" %></li>
           <li><%= comment.comment %></li>
         </ul>
       </div>
     </div>
     <% if comment.user == current_user %>
       <div class="text-right mt-1">
-        <%= link_to "削除する", recipe_comment_path(comment.recipe, comment), method: :delete, remote: true, class:"btn btn-danger" %>
+        <%= link_to "削除する", recipe_comment_path(comment.recipe, comment), method: :delete, remote: true, class:"btn btn-outline-danger btn-sm" %>
       </div>
     <% end %>
   <% end %>
@@ -24,7 +24,7 @@
   <% recipe.comments.each do |comment| %>
     <div class="mt-1" style="border: 1px solid #ccc; display: flex; align-items: center;">
       <div class="ml-4">
-        <%= link_to admin_user_path(comment.user) do %>
+        <%= link_to admin_user_path(comment.user), class:"user-name-link" do %>
           <%= image_tag comment.user.get_profile_image , class: "rounded-circle", style:"width: 50px; height: 50px;" %>
         <% end %>
       </div>
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="text-right mt-1">
-      <%= link_to "削除する", recipe_comment_path(comment.recipe, comment), method: :delete, remote: true, class:"btn btn-danger" %>
+      <%= link_to "削除する", recipe_comment_path(comment.recipe, comment), method: :delete, remote: true, class:"btn btn-outline-danger btn-sm" %>
     </div>
   <% end %>
 <% end %>

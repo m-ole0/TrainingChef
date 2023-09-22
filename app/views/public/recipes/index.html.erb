@@ -30,8 +30,8 @@
               </div>
               <div>
                 <ul style="list-style: none;">
-                  <li><%=link_to recipe.user.name, user_path(recipe.user) %></li>
-                  <li><%=link_to recipe.title, recipe_path(recipe), class:"recipe-title" %></li>
+                  <li><%=link_to recipe.user.name, user_path(recipe.user), class:"user-name-link" %></li>
+                  <li><%=link_to recipe.title, recipe_path(recipe), class:"recipe-title recipe-title-link" %></li>
                   <li><%= render "public/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
                   <li><span id="favorite_btn_<%= recipe.id %>"><%= render "public/favorites/favorite_btn", recipe: recipe %></span>/コメント<%= recipe.comments.count %>件</li>
                 <ul>
@@ -54,8 +54,8 @@
               </div>
               <div>
                 <ul style="list-style: none;">
-                  <li><%=link_to recipe.user.name, admin_user_path(recipe.user) %></li>
-                  <li><%=link_to recipe.title, admin_recipe_path(recipe), class:"recipe-title" %></li>
+                  <li><%=link_to recipe.user.name, admin_user_path(recipe.user), class:"user-name-link" %></li>
+                  <li><%=link_to recipe.title, admin_recipe_path(recipe), class:"recipe-title recipe-title-link" %></li>
                   <li class="mt-1"><%= render "admin/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
                   <li>♥<%= recipe.favorites.count %>件/コメント<%= recipe.comments.count %>件</li>
                 <ul>

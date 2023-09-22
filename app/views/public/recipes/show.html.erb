@@ -13,7 +13,7 @@
           </div>
           <div>
             <ul style="list-style: none;">
-              <li><%=link_to @recipe.user.name, user_path(@recipe.user) %></li>
+              <li><%=link_to @recipe.user.name, user_path(@recipe.user), class:"user-name-link" %></li>
               <li><b><%= @recipe.title %></b></li>
               <!--レシピに追加されたタグを表示-->
               <li>
@@ -21,7 +21,7 @@
                   <% @recipe_tags.each do |tag| %>
                     <div>
                       <i class="fa-sharp fa-solid fa-tag"></i>
-                      <%= link_to tag.name, tag_search_tag_path(tag) %>
+                      <%= link_to tag.name, tag_search_tag_path(tag), class:"recipe-tags-link" %>
                     </div>
                   <% end %>
                 <% end %>
@@ -45,8 +45,8 @@
           </div>
           <% if @recipe.user == current_user %>
             <div class="text-right mt-2">
-              <%= link_to "編集", edit_recipe_path(@recipe), class:"btn btn-success" %>
-              <%= link_to "削除", check_recipe_path(@recipe), class:"btn btn-danger ml-4" %>
+              <%= link_to "編集", edit_recipe_path(@recipe), class:"btn btn-outline-info" %>
+              <%= link_to "削除", check_recipe_path(@recipe), class:"btn btn-outline-danger ml-4" %>
             </div>
           <% end %>
           <!--コメント入力フォーム-->

@@ -2,6 +2,6 @@
 <%= form_with model: [recipe, comment], local: false do |f| %>
   <div style="display: flex; align-items: center;">
     <%= f.text_field :comment, placeholder:"コメントを入力", class:"form-control", id:"comment_textfield" %>
-    <%= f.submit "送信", class:"btn btn-primary ml-4" %>
+    <%= f.submit "送信", class:"btn btn-outline-info ml-4" %>
   </div>
 <% end %>

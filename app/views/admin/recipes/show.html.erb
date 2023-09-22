@@ -13,7 +13,7 @@
           </div>
           <div>
             <ul style="list-style: none;">
-              <li><%=link_to @recipe.user.name, admin_user_path(@recipe.user) %></li>
+              <li><%=link_to @recipe.user.name, admin_user_path(@recipe.user), class:"user-name-link" %></li>
               <li><b><%= @recipe.title %></b></li>
               <!--レシピに追加されたタグを表示-->
               <li>
@@ -21,14 +21,14 @@
                   <% @recipe_tags.each do |tag| %>
                     <div>
                       <i class="fa-sharp fa-solid fa-tag"></i>
-                      <%= link_to tag.name, admin_tag_search_tag_path(tag) %>
+                      <%= link_to tag.name, admin_tag_search_tag_path(tag), class:"recipe-tags-link" %>
                     </div>
                   <% end %>
                 <% end %>
               </li>
               <!--いいね数とコメント数表示-->
               <li>
-                ♥<%= @recipe.favorites.count %>件/コメント<%= @recipe.comments.count %>件</span>
+                <span class="favorite-btn-red">♥</span><%= @recipe.favorites.count %>件/コメント<%= @recipe.comments.count %>件</span>
               </li>
             <ul>
           </div>
@@ -43,8 +43,8 @@
             <%= safe_join(@recipe.process.split("\n"),tag(:br))%>
           </div>
           <div class="text-right mt-2">
-            <%= link_to "編集", edit_admin_recipe_path(@recipe), class:"btn btn-success" %>
-            <%= link_to "削除", check_admin_recipe_path(@recipe), class:"btn btn-danger ml-4" %>
+            <%= link_to "編集", edit_admin_recipe_path(@recipe), class:"btn btn-outline-info" %>
+            <%= link_to "削除", check_admin_recipe_path(@recipe), class:"btn btn-outline-danger ml-4" %>
           </div>
 
           <!--コメント一覧-->

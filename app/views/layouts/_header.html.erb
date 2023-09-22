@@ -1,61 +1,69 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="/"><span>TrainingChef</span></a>
-
-      <% if user_signed_in? || admin_signed_in? %>
-        <%= render 'layouts/search_form' %>
-      <% end %>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
-          <li>
-            <%= link_to "人気レシピ", recipes_ranking_path, class: 'nav-link text-light' %>
-          </li>
-          <li>
-            <%= link_to "マイページ", user_path(current_user), class: 'nav-link text-light' %>
-          </li>
-          <li>
-            <%= link_to "タイムライン", following_recipes_user_path(current_user), class: 'nav-link text-light' %>
-          </li>
-          <li>
-            <%= link_to "新規投稿", new_recipe_path, class: 'nav-link text-light' %>
-          </li>
-          <li>
-            <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
-          </li>
-        <% elsif admin_signed_in? %>
-          <li>
-            <%= link_to "レシピ一覧", admin_recipes_path, class: 'nav-link text-light' %>
-          </li>
-          <li>
-            <%= link_to "ユーザー一覧", admin_users_path, class: 'nav-link text-light' %>
-          </li>
-          <li>
-            <%= link_to "タグ一覧", admin_tags_path, class: 'nav-link text-light' %>
-          </li>
-          <li>
-            <%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: 'nav-link text-light' %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to "人気レシピ", recipes_ranking_path, class: 'nav-link text-light' %>
-          </li>
-          <li>
-            <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'nav-link text-light' %>
-          </li>
-          <li>
-            <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %>
-          </li>
-          <li>
-            <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %>
-          </li>
+      <div class="col-3">
+        <%= link_to root_path do %>
+          <%= image_tag 'TrainingChef_logo_white.png', alt:"LOGO", size:"80x80" %>
         <% end %>
-        </ul>
+      </div>
+      <div class="col-9">
+        <div class="mx-auto text-right">
+          <% if user_signed_in? || admin_signed_in? %>
+            <%= render 'layouts/search_form' %>
+          <% end %>
+        </div>
+        <div class="text-right">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse text-right" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto text-center">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to "人気レシピ", recipes_ranking_path, class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "マイページ", user_path(current_user), class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "タイムライン", following_recipes_user_path(current_user), class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "新規投稿", new_recipe_path, class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li>
+              <%= link_to "レシピ一覧", admin_recipes_path, class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "ユーザー一覧", admin_users_path, class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "タグ一覧", admin_tags_path, class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: 'nav-link text-light' %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "人気レシピ", recipes_ranking_path, class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %>
+            </li>
+          <% end %>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>

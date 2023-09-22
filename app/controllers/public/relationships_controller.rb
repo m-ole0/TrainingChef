@@ -1,6 +1,5 @@
 class Public::RelationshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :is_matching_login_user, only: [:followings, :followers]
 
   def create
     @user = User.find(params[:user_id])
@@ -22,12 +21,4 @@ class Public::RelationshipsController < ApplicationController
     @users = user.follower_users.page(params[:page]).per(5)
   end
 
-  private
-
-  def is_matching_login_user
-    user = User.find(params[:user_id])
-    unless user.id == current_user.id
-      redirect_to user_path(current_user)
-    end
-  end
 end

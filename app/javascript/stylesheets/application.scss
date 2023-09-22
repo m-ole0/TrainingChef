@@ -1,11 +1,14 @@
 @use '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
+body{
+  font-family: 'Noto Sans JP', sans-serif;
+}
 
 .recipe-title {
   font-weight: bold;
   display: -webkit-box;
   width: 100%;
-  height: 1.2em;
   overflow: hidden;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -14,9 +17,26 @@
 .recipe-tags {
   display: -webkit-box;
   width: 100%;
-  height: 1.2em;
   overflow: hidden;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+}
+
+.ranking-link,
+.user-name-link,
+.recipe-title-link,
+.favorite-link,
+.followings-link,
+.follower-link,
+.admin-tag-link {
+  color: black;
+}
+
+.recipe-tags-link {
+  color: #00BFFF;
+}
+
+.favorite-btn-red {
+  color: red;
 }
 

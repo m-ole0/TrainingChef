@@ -1,15 +1,15 @@
 <% if recipe.user == current_user %>
   <%= link_to favorites_recipe_path(recipe) do %>
-    ♥<%= recipe.favorites.count %>件
+    <span class="favorite-btn-red">♥</span><span class="favorite-link"><%= recipe.favorites.count %>件</span>
   <% end %>
 <% else %>
   <% if recipe.favorited_by?(current_user) %>
     <%= link_to recipe_favorites_path(recipe), method: :delete, remote: true do %>
-      ♥<%= recipe.favorites.count %>
+      <span class="favorite-btn-red">♥</span><span class="favorite-link"><%= recipe.favorites.count %></span>
     <% end %>
   <% else %>
     <%= link_to recipe_favorites_path(recipe), method: :post, remote: true do %>
-      ♡<%= recipe.favorites.count %>
+      <span class="favorite-link">♡<%= recipe.favorites.count %></span>
     <% end %>
   <% end %>
 <% end %>

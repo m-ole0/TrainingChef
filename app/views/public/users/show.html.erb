@@ -12,20 +12,24 @@
           </td>
           <% if @user == current_user %>
             <td class="align-middle" style="width:25%">
-              <%= link_to "編集", edit_user_path, class: 'btn btn-primary' %>
+              <%= link_to "編集", edit_user_path, class: 'btn btn-outline-info' %>
             </td>
             <td class="align-middle" style="width:25%">
-              <%= link_to "いいね", favorite_recipes_user_path(@user), class: 'btn btn-success' %>
+              <%= link_to "いいね", favorite_recipes_user_path(@user), class: 'btn btn-outline-success' %>
             </td>
           <% else %>
-            <td id="follow_btn_<%= @user.id %>">
+            <td colspan="2" id="follow_btn_<%= @user.id %>">
               <%= render "public/relationships/follow_btn", user: @user %>
             </td>
           <% end %>
         </tr>
         <tr>
           <td><%= @recipes_all.count %>投稿</td>
-          <td><%= link_to @user.following_users.count, user_followings_path(@user)  %>フォロー</td>
+          <td>
+            <%= link_to user_followings_path(@user) do %>
+              <span class="followings-link"><%= @user.following_users.count %>フォロー</span>
+            <% end %>
+          </td>
           <td id="follower_count_<%= @user.id %>"><%= render 'public/relationships/follower_count', user: @user %></td>
         </tr>
         <% if @user.introduction.present? %>
