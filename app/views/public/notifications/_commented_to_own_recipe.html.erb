@@ -1,5 +1,6 @@
 <%= link_to transition_path(notification) do %>
   <div>
+    <i class="fa-solid fa-comment fa-lg" style="color: #72d93a;"></i>
     <%= link_to notification.subject.user.name, user_path(notification.subject.user), class:"user-name-link border-bottom border-dark" %>
     があなたの
     <%= link_to '投稿', recipe_path(notification.subject.recipe), class:"recipe-title-link border-bottom border-dark" %>

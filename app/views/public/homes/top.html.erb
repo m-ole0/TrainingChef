@@ -98,12 +98,12 @@
                       <% recipe.tags.limit(3).each do |tag| %>
                         <div class="d-flex justify-content-start">
                           <i class="fa-sharp fa-solid fa-tag"></i>
-                          <span class="recipe-tags"><%= tag.name %></span>
+                          <span class="recipe-tags recipe-tags-link"><%= tag.name %></span>
                         </div>
                       <% end %>
                     <% end %>
                   </li>
-                  <li>♥<%= recipe.favorites.count %>件/コメント<%= recipe.comments.count %>件</li>
+                  <li><spaan class="favorite-btn-red">♥</spaan><%= recipe.favorites.count %>件/ <i class="fa-regular fa-comment"></i> <%= recipe.comments.count %>件</li>
                 <ul>
               </div>
             </div>

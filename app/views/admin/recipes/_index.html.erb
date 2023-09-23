@@ -18,7 +18,7 @@
             <li><%=link_to recipe.title, admin_recipe_path(recipe), class:"recipe-title recipe-title-link" %></li>
             <li class="mt-1"><%= render "admin/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
             <li>
-              <span class="favorite-btn-red">♥</span><%= recipe.favorites.count %>件/コメント<%= recipe.comments.count %>件
+              <span class="favorite-btn-red">♥</span><%= recipe.favorites.count %>件/ <i class="fa-regular fa-comment"></i> <%= recipe.comments.count %>件
             </li>
           <ul>
         </div>
