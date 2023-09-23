@@ -33,10 +33,13 @@ body{
 }
 
 .recipe-tags-link {
-  color: #00BFFF;
+  color:#8EB8FF;
 }
 
 .favorite-btn-red {
   color: red;
 }
 
+.navbar-collapse {
+  flex-grow: 0;
+}

@@ -1,42 +1,50 @@
 <% if user_signed_in? %>
   <% recipe.comments.each do |comment| %>
-    <div class="mt-1" style="border: 1px solid #ccc; display: flex; align-items: center;">
-      <div class="ml-4">
-        <%= link_to user_path(comment.user) do %>
-          <%= image_tag comment.user.get_profile_image , class: "rounded-circle", style:"width: 50px; height: 50px;" %>
-        <% end %>
-      </div>
-      <div>
-        <ul style="list-style: none;">
-          <li><%= link_to comment.user.name, user_path(comment.user), class:"user-name-link" %></li>
-          <li><%= comment.comment %></li>
-        </ul>
+    <div class="list-group mt-1">
+      <div class="list-group-item">
+        <div class="d-flex">
+          <div class="my-auto" style="width: 10%;">
+            <%= link_to user_path(comment.user) do %>
+              <%= image_tag comment.user.get_profile_image , class: "rounded-circle", style:"max-width:50px;" %>
+            <% end %>
+          </div>
+          <div style="width: 75%;">
+            <ul style="list-style: none;">
+              <li><%= link_to comment.user.name, user_path(comment.user), class:"user-name-link" %></li>
+              <li><%= comment.comment %></li>
+            </ul>
+          </div>
+          <% if comment.user == current_user %>
+            <div class="my-auto ml-2" style="width: 15%;">
+              <%= link_to "削除する", recipe_comment_path(comment.recipe, comment), method: :delete, remote: true, class:"btn btn-outline-danger btn-sm" %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-    <% if comment.user == current_user %>
-      <div class="text-right mt-1">
-        <%= link_to "削除する", recipe_comment_path(comment.recipe, comment), method: :delete, remote: true, class:"btn btn-outline-danger btn-sm" %>
-      </div>
-    <% end %>
   <% end %>
   <!--管理者ログイン時-->
 <% elsif admin_signed_in? %>
   <% recipe.comments.each do |comment| %>
-    <div class="mt-1" style="border: 1px solid #ccc; display: flex; align-items: center;">
-      <div class="ml-4">
-        <%= link_to admin_user_path(comment.user), class:"user-name-link" do %>
-          <%= image_tag comment.user.get_profile_image , class: "rounded-circle", style:"width: 50px; height: 50px;" %>
-        <% end %>
+    <div class="list-group mt-1">
+      <div class="list-group-item">
+        <div class="d-flex">
+          <div class="my-auto" style="width: 10%;">
+            <%= link_to admin_user_path(comment.user) do %>
+              <%= image_tag comment.user.get_profile_image , class: "rounded-circle", style:"max-width:50px;" %>
+            <% end %>
+          </div>
+          <div style="width: 75%;">
+            <ul style="list-style: none;">
+              <li><%= link_to comment.user.name, admin_user_path(comment.user), class:"user-name-link" %></li>
+              <li><%= comment.comment %></li>
+            </ul>
+          </div>
+          <div class="my-auto ml-2" style="width: 15%;">
+            <%= link_to "削除する", recipe_comment_path(comment.recipe, comment), method: :delete, remote: true, class:"btn btn-outline-danger btn-sm" %>
+          </div>
+        </div>
       </div>
-      <div>
-        <ul style="list-style: none;">
-          <li><%= link_to comment.user.name, admin_user_path(comment.user) %></li>
-          <li><%= comment.comment %></li>
-        </ul>
-      </div>
-    </div>
-    <div class="text-right mt-1">
-      <%= link_to "削除する", recipe_comment_path(comment.recipe, comment), method: :delete, remote: true, class:"btn btn-outline-danger btn-sm" %>
     </div>
   <% end %>
 <% end %>

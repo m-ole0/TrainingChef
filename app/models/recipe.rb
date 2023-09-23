@@ -9,6 +9,8 @@ class Recipe < ApplicationRecord
   has_many :favorited_users, through: :favorites, source: :user
   has_many :week_favorites, -> { where(created_at: 1.week.ago.beginning_of_day..Time.current.end_of_day) }
 
+  has_one :notification, as: :subject, dependent: :destroy
+
   has_one_attached :recipe_image
 
   validates :title, presence: true, length: { minimum: 2, maximum: 30 }

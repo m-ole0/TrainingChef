@@ -1,5 +1,4 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_user!
 
   def create
     @recipe = Recipe.find(params[:recipe_id])

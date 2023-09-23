@@ -17,7 +17,9 @@
         </tr>
         <tr>
           <td class="text-center align-middle">自己紹介文</td>
-          <td class="align-middle"><%= safe_join(@user.introduction.split("\n"),tag(:br))%></td>
+          <% if @user.introduction.present? %>
+            <td class="align-middle"><%= safe_join(@user.introduction.split("\n"),tag(:br))%></td>
+          <% end %>
         </tr>
       </table>
       <div class="text-center">
