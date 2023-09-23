@@ -1,47 +1,47 @@
 <div class="container">
   <div class="row mx-auto">
-    <div class="col-12 col-lg-7 mx-auto text-center">
+    <div class="col-12 col-lg-8 mx-auto text-center">
       <h2 class="mt-5">プロフィール編集</h2>
       <!--エラー文-->
       <%= render "layouts/errors", obj: @user %>
        <!--入力フォーム-->
       <%= form_with model: @user, usrl: user_path, method: :patch, local: true do |f| %>
-      <table class="table table-borderless">
-        <tr>
-          <td class="align-middle" style="width: 30%;">
+        <div class="row d-flex mt-3">
+          <div class="my-auto col-12 col-md-3 text-left">
             <%= f.label :profile_image, "プロフィール画像" %>
-          </td>
-          <td class="text-left align-middle" style="width:70%;">
-            <%= f.file_field :profile_image, accept: "image/*"%>
-          </td>
-        </tr>
-        <tr>
-          <td class="align-middle">
+          </div>
+          <div class="my-auto text-left col-12 col-md-9">
+            <%= f.file_field :profile_image, accept: "image/*", style: "width: 280px;"%>
+          </div>
+        </div>
+        <div class="row d-flex mt-3">
+          <div class="my-auto col-12 col-md-3 text-left">
             <%= f.label :name, "ユーザー名" %>
-          </td>
-          <td class="align-middle">
+          </div>
+          <div class="my-auto text-left col-12 col-md-9">
             <%= f.text_field :name, class:"form-control" %>
-          </td>
-        </tr>
-        <tr>
-          <td class="align-middle">
-            <%= f.label :introduction, "自己紹介文", class: "align-top" %>
-          </td>
-          <td class="align-middle">
+          </div>
+        </div>
+        <div class="row d-flex mt-3">
+          <div class="my-auto col-12 col-md-3 text-left">
+            <%= f.label :introduction, "自己紹介文" %>
+          </div>
+          <div class="my-auto text-left col-12 col-md-9">
             <%= f.text_area :introduction, class:"form-control" %>
-          </td>
-        </tr>
-        <tr>
-          <td class="align-middle">
-          <%= f.label :email, "メールアドレス" %>
-          </td>
-          <td class="align-middle">
-          <%= f.text_field :email, class:"form-control" %>
-          </td>
-        </tr>
-      </table>
-        <%= f.submit "編集内容を保存", class:"btn btn-outline-success mt-4" %>
-        <%= link_to "アカウントを削除する", check_user_path(current_user), class:"btn btn-outline-danger mt-4" %>
+          </div>
+        </div>
+        <div class="row d-flex mt-3">
+          <div class="my-auto col-12 col-md-3 text-left">
+            <%= f.label :email, "メールアドレス" %>
+          </div>
+          <div class="my-auto text-left col-12 col-md-9">
+            <%= f.text_field :email, class:"form-control" %>
+          </div>
+        </div>
+        <div>
+          <%= f.submit "編集内容を保存", class:"btn btn-outline-info mt-4" %>
+          <%= link_to "アカウントを削除する", check_user_path(current_user), class:"btn btn-outline-danger mt-4" %>
+        </div>
       <% end %>
     </div>
   </div>

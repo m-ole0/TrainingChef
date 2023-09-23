@@ -12,7 +12,7 @@ class Admin::TagsController < ApplicationController
   def update
     @tag = Tag.find(params[:id])
     if @tag.update(tag_params)
-      flash[:notice] = "タグを更新しました。"
+      flash[:notice] = "タグ情報を更新しました。"
       redirect_to admin_tags_path
     else
       render "edit"
