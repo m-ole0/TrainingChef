@@ -15,11 +15,16 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:notice] = "ユーザー情報を更新しました。"
+    if @user.email == 'guest@example.com'
+      flash[:notice] = "ゲストユーザーの更新・削除はできません"
       redirect_to admin_user_path(@user)
     else
-      render "edit"
+      if @user.update(user_params)
+        flash[:notice] = "ユーザー情報を更新しました。"
+        redirect_to admin_user_path(@user)
+      else
+        render "edit"
+      end
     end
   end
 
@@ -29,9 +34,14 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    flash[:notice] = "ユーザーデータを削除しました。"
-    redirect_to admin_users_path
+    if @user.email == 'guest@example.com'
+      flash[:notice] = "ゲストユーザーの更新・削除はできません"
+      redirect_to admin_user_path(@user)
+    else
+      @user.destroy
+      flash[:notice] = "ユーザーデータを削除しました。"
+      redirect_to admin_users_path
+    end
   end
 
   private

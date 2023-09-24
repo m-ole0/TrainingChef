@@ -37,7 +37,7 @@ ja:
         recipe:
           attributes:
             recipe_image:
-              blank: "を選択してください。"
+              blank: "を選択してください"
             title:
               blank: "を入力してください"
               too_short: "は%{count}文字以上で入力してください"
