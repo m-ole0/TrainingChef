@@ -18,19 +18,29 @@ class Recipe < ApplicationRecord
   validates :process, presence: true
   validates :recipe_image, presence: true
 
-  def save_tags(sent_tags)
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+  def save_tags(sent_tags, current_tags, new_tags)
     old_tags = current_tags - sent_tags
-    new_tags = sent_tags - current_tags
-
     old_tags.each do |old_tag|
       self.tags.delete Tag.find_by(name: old_tag)
     end
 
-    new_tags.each do |new_tag|
+    new_tags(sent_tags, current_tags).each do |new_tag|
       tag = Tag.find_or_create_by(name: new_tag)
       self.tags << tag
     end
+  end
+
+  def current_tags
+    self.tags.pluck(:name) unless self.tags.nil?
+  end
+
+  def new_tags(sent_tags, current_tags)
+    sent_tags - current_tags
+  end
+
+
+  def check_valid?
+
   end
 
   def favorited_by?(user)

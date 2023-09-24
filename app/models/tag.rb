@@ -8,4 +8,8 @@ class Tag < ApplicationRecord
     Tag.where('name LIKE ?', '%'+content+'%')
   end
 
+  def self.all_tags_valid?(tags)
+    tags.all? { |tag| Tag.new(name:tag).valid? }
+  end
+
 end

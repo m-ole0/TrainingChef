@@ -30,12 +30,12 @@
       </div>
     <% end %>
     <div class="col-12 col-sm-10 col-lg-7">
-        <% if @user.introduction.present? %>
-          <p style="border: 1px solid #000;">
-            <%= safe_join(@user.introduction.split("\n"),tag(:br))%>
-          </p>
-        <% end %>
-      </div>
+      <% if @user.introduction.present? %>
+        <p style="border: 1px solid #000;">
+          <%= safe_join(@user.introduction.split("\n"),tag(:br))%>
+        </p>
+      <% end %>
+    </div>
   </div>
 <!--投稿一覧-->
   <% if @recipes.present? %>
