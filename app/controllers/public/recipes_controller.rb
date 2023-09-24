@@ -10,11 +10,18 @@ class Public::RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
     tag_list = params[:recipe][:name].split(',')
-    if @recipe.save
-      @recipe.save_tags(tag_list)
-      flash[:notice] = "投稿に成功しました。"
-      redirect_to user_path(current_user)
+    current_tags = @recipe.current_tags
+    new_tags = @recipe.new_tags(tag_list, current_tags)
+    if Tag.all_tags_valid?(new_tags)
+      if @recipe.save
+        @recipe.save_tags(tag_list, current_tags, new_tags)
+        flash[:notice] = "投稿に成功しました。"
+        redirect_to user_path(current_user)
+      else
+        render "new"
+      end
     else
+      @recipe.errors.add(:base, "タグは30文字以内にしてください。")
       render "new"
     end
   end

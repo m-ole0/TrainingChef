@@ -21,13 +21,20 @@ class Admin::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    tag_list=params[:recipe][:name].split(',')
-    if @recipe.update(recipe_params)
-      @recipe.save_tags(tag_list)
-      flash[:notice] = "レシピを更新しました。"
-      redirect_to admin_recipe_path(@recipe)
+    tag_list = params[:recipe][:name].split(',')
+    current_tags = @recipe.current_tags
+    new_tags = @recipe.new_tags(tag_list, current_tags)
+    if Tag.all_tags_valid?(new_tags)
+      if @recipe.update(recipe_params)
+        @recipe.save_tags(tag_list, current_tags, new_tags)
+        flash[:notice] = "レシピを更新しました。"
+        redirect_to admin_recipe_path(@recipe)
+      else
+        prepare_and_render_edit(tag_list)
+      end
     else
-      render "edit"
+      @recipe.errors.add(:base, "タグは30文字以内にしてください。")
+      prepare_and_render_edit(tag_list)
     end
   end
 
@@ -49,4 +56,10 @@ class Admin::RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:title, :material, :process, :recipe_image)
   end
+
+  def prepare_and_render_edit(tag_list)
+    @tag_list = tag_list.join(',')
+    render "edit"
+  end
+
 end
