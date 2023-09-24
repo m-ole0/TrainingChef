@@ -42,10 +42,15 @@
         <% if user_signed_in? %>
           <div class="col-12 col-lg-7 mx-auto text-center mt-5 mb-4">
             <h4>タグ名に"<%= @content %>"を含むタグ一覧(<%= @result_all.count %>件)</h4>
-              <%= render 'public/recipes/tag_index', tags: @records %>
+          </div>
+          <div class="col-12  text-center mx-auto">
+            <%= render 'public/recipes/tag_index', tags: @records %>
+          </div>
         <% elsif admin_signed_in? %>
-        <div class="col-12 text-center mt-5"><h4>タグ名に"<%= @content %>"を含むタグ一覧(<%= @result_all.count %>件)</h4></div>
-          <div class="col-12 col-lg-7 mx-auto">
+          <div class="col-12 mx-auto text-center mt-5 mb-4">
+            <h4>タグ名に"<%= @content %>"を含むタグ一覧(<%= @result_all.count %>件)</h4>
+          </div>
+          <div class="col-12  text-center mx-auto">
             <%= render 'admin/tags/index', tags: @records %>
           </div>
         <% end %>
@@ -53,9 +58,11 @@
           <%= paginate @records %>
         </div>
       <% else %>
-        <h4 class="mt-5 mx-auto">タグ名に"<%= @content %>"を含むタグは存在しません</h4>
+        <div class="col-12 col-lg-7 mx-auto text-center mt-5 mb-4">
+          <h4 class="mt-5 mx-auto">タグ名に"<%= @content %>"を含むタグは存在しません</h4>
+        </div>
       <% end %>
-      </div>
     <% end %>
+    </div>
   </div>
 </div>

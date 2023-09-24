@@ -43,3 +43,15 @@ body{
 .navbar-collapse {
   flex-grow: 0;
 }
+
+@media(max-width:768px) {
+  .test-image {
+    max-height: 80px;
+  }
+}
+
+@media(min-width:769px) {
+  .test-image {
+    height: 100px;
+  }
+}
