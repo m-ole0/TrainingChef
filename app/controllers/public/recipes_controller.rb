@@ -14,6 +14,7 @@ class Public::RecipesController < ApplicationController
     new_tags = @recipe.new_tags(tag_list, current_tags)
     if Tag.all_tags_valid?(new_tags)
       if @recipe.save
+        tag_list = tag_list.uniq
         @recipe.save_tags(tag_list, current_tags, new_tags)
         flash[:notice] = "投稿に成功しました。"
         redirect_to user_path(current_user)
@@ -51,6 +52,7 @@ class Public::RecipesController < ApplicationController
     new_tags = @recipe.new_tags(tag_list, current_tags)
     if Tag.all_tags_valid?(new_tags)
       if @recipe.update(recipe_params)
+        tag_list = tag_list.uniq
         @recipe.save_tags(tag_list, current_tags, new_tags)
         flash[:notice] = "レシピを更新しました。"
         redirect_to recipe_path(@recipe)
