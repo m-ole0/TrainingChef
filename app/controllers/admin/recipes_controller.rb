@@ -26,6 +26,7 @@ class Admin::RecipesController < ApplicationController
     new_tags = @recipe.new_tags(tag_list, current_tags)
     if Tag.all_tags_valid?(new_tags)
       if @recipe.update(recipe_params)
+        tag_list = tag_list.uniq
         @recipe.save_tags(tag_list, current_tags, new_tags)
         flash[:notice] = "レシピを更新しました。"
         redirect_to admin_recipe_path(@recipe)
