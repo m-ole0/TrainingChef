@@ -1,4 +1,11 @@
 ja:
+  views:
+    pagination:
+      first: "<<"
+      last: ">>"
+      previous: "<"
+      next: ">"
+      truncate: "..."
   datetime:
     distance_in_words:
       less_than_x_minutes: "%{count}分未満"
