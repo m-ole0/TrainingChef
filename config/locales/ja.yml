@@ -4,6 +4,8 @@ ja:
       less_than_x_minutes: "%{count}分未満"
       x_minutes: "%{count}分"
       about_x_hours: "%{count}時間"
+      about_x_months: "%{count}時間"
+      about_x_years: "%{count}時間"
       x_days: "%{count}日"
       x_months: "%{count}ヶ月"
       x_years: "%{count}年"
