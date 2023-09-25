@@ -71,12 +71,16 @@ body{
 
 @media(max-width:768px) {
   .test-image {
-    max-height: 80px;
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
   }
 }
 
 @media(min-width:769px) {
   .test-image {
     height: 100px;
+    width: 100px;
+    object-fit: cover;
   }
 }

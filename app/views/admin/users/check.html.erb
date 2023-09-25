@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12 col-sm-10 col-md-7 mx-auto text-center">
       <div class="mt-5">
-        <%= image_tag @user.get_profile_image, class: "rounded-circle", style:"width: 300px; height: 300px;" %>
+        <%= image_tag @user.get_profile_image, class: "rounded-circle", style:"width: 300px; height: 300px; object-fit: cover;" %>
       </div>
       <h3 class="mt-4"><%= @user.name %></h3>
       <h4 class="mt-4">本当にアカウントを削除しますか？</h4>
