@@ -25,7 +25,7 @@
             <div class="card-body" style="display: flex; align-items: center;">
               <div>
                 <%= link_to user_path(recipe.user) do %>
-                  <%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px;" %>
+                  <%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px; object-fit: cover;" %>
                 <% end %>
               </div>
               <div>
@@ -49,7 +49,7 @@
             <div class="card-body" style="display: flex; align-items: center;">
               <div>
                 <%= link_to admin_user_path(recipe.user) do %>
-                  <%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px;" %>
+                  <%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px; object-fit: cover;" %>
                 <% end %>
               </div>
               <div>
@@ -69,7 +69,7 @@
               <%= image_tag recipe.recipe_image, style:"width: 100%; object-fit: cover;" %>
             </div>
             <div class="card-body" style="display: flex; align-items: center;">
-              <div><%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px;" %></div>
+              <div><%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px; object-fit: cover;" %></div>
               <div>
                 <ul style="list-style: none;">
                   <li><%= recipe.user.name %></li>

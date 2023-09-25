@@ -8,7 +8,7 @@
         <div class="card-body mx-4" style="display: flex; align-items: center;">
           <div>
             <%= link_to user_path(@recipe.user) do %>
-              <%= image_tag @recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px;" %>
+              <%= image_tag @recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px; object-fit: cover;" %>
             <% end %>
           </div>
           <div>
