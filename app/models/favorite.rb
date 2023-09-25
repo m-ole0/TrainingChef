@@ -8,6 +8,7 @@ class Favorite < ApplicationRecord
   validates_uniqueness_of :recipe_id, scope: :user_id
 
   private
+
   def  create_notifications
     Notification.create(subject: self, user: self.recipe.user, action_type: :liked_to_own_recipe)
   end

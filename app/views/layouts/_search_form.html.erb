@@ -1,9 +1,9 @@
 <!--検索フォーム-->
 <div class="serch_form">
-    <%= form_with url: search_path,method: :get, local: true do |f| %>
+  <%= form_with url: search_path,method: :get, local: true do |f| %>
     <%= f.text_field :content, class:"search-form" %>
     <%= f.select :model,options_for_select({"ユーザー名"=>"user","レシピ名"=>"recipe", "タグ名"=>"tag"})%>
     <%= f.hidden_field :method, value: "partial" %>
     <%= f.submit'検索' %>
-    <% end %>
+  <% end %>
 </div>

@@ -1,22 +1,23 @@
 Rails.application.routes.draw do
-# ユーザー用
+  # ユーザー用
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
 
-# 管理者用
+  # 管理者用
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-# ゲストログイン用
+
+  # ゲストログイン用
   devise_scope :user do
     post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-# ユーザー用ルーティング
+  # ユーザー用ルーティング
   scope module: :public do
     root to: 'homes#top'
     resources :users, only: [:show, :edit, :update, :destroy] do
@@ -44,7 +45,7 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index, :destroy]
   end
 
-# 管理者用ルーティング
+  # 管理者用ルーティング
   namespace :admin do
     resources :recipes, except: [:new, :create] do
       resources :comments, only: [:destroy]

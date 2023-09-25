@@ -58,7 +58,7 @@ body{
   color: #696969;
 }
 
-/* 表示しているページ番号のデザイン */
+/* 表示しているページ番号のデザイン*/
 .pagination>.active>a {
   background: #93c9ff;
   border-radius: 15px;
@@ -66,7 +66,7 @@ body{
 
 /*ホバー時のデザイン*/
 .pagination>li>a:hover {
-  border-radius: 15px;    /*角を丸くする*/
+  border-radius: 15px;
 }
 
 @media(max-width:768px) {
