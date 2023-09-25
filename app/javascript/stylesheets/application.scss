@@ -3,7 +3,21 @@
 
 body{
   font-family: 'Noto Sans JP', sans-serif;
+  position: relative;
 }
+
+footer {
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 14px;
+  text-align: center;
+  border-top: 1px solid #000;
+  color: white;
+  background-color: #343a40;
+ }
 
 .recipe-title {
   font-weight: bold;
@@ -50,7 +64,9 @@ body{
 }
 
 .pagination {
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  position:  relative;
+  z-index: 10;
 }
 
 .pagination>li>a {
