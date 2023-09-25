@@ -38,11 +38,6 @@ class Recipe < ApplicationRecord
     sent_tags - current_tags
   end
 
-
-  def check_valid?
-
-  end
-
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
@@ -50,5 +45,4 @@ class Recipe < ApplicationRecord
   def self.partial_search(content)
     Recipe.where('title LIKE ?', '%'+content+'%')
   end
-
 end

@@ -1,5 +1,5 @@
 <div class="container">
-<!--プロフィール表示-->
+  <!--プロフィール表示-->
   <div class="row d-flex justify-content-center text-center align-items-center mt-5 mb-4">
     <div class="col-12 col-sm-2 col-lg-2 mb-3">
       <%= image_tag @user.get_profile_image, class: "rounded-circle test-image" %>
@@ -37,7 +37,7 @@
       <% end %>
     </div>
   </div>
-<!--投稿一覧-->
+  <!--投稿一覧-->
   <% if @recipes.present? %>
     <div class="row">
       <%= render 'public/recipes/recipe_index', recipes: @recipes %>

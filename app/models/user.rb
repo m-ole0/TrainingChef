@@ -53,5 +53,4 @@ class User < ApplicationRecord
   def self.partial_search(content)
     User.where('name LIKE ?', '%'+content+'%')
   end
-
 end
