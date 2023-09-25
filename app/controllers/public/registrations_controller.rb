@@ -3,16 +3,22 @@
 class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_permitted_parameters, only: [:create]
 
   # GET /resource/sign_up
   # def new
   #   super
   # end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+def create
+  super do |resource|
+    if resource.errors.any?
+      #byebug
+      flash[:error] = resource.errors.full_messages
+      redirect_to new_user_registration_path and return
+    end
+  end
+end
 
   # GET /resource/edit
   # def edit
