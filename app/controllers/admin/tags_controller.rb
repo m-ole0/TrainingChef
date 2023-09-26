@@ -11,11 +11,16 @@ class Admin::TagsController < ApplicationController
 
   def update
     @tag = Tag.find(params[:id])
-    if @tag.update(tag_params)
-      flash[:notice] = "タグ情報を更新しました。"
-      redirect_to admin_tags_path
+    if tag_exists_with_same_name?(tag_params[:name])
+      @tag.errors.add(:base, "同じ名前のタグが存在します。")
+      render 'edit'
     else
-      render "edit"
+      if @tag.update(tag_params)
+        flash[:notice] = "タグ情報を更新しました。"
+        redirect_to admin_tags_path
+      else
+        render "edit"
+      end
     end
   end
 
@@ -34,5 +39,9 @@ class Admin::TagsController < ApplicationController
 
   def tag_params
     params.require(:tag).permit(:name)
+  end
+
+  def tag_exists_with_same_name?(name)
+    Tag.where(name: name).where.not(id: @tag.id).exists?
   end
 end
