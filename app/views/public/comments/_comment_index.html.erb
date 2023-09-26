@@ -5,7 +5,7 @@
         <div class="d-flex">
           <div class="my-auto" style="width: 10%;">
             <%= link_to user_path(comment.user) do %>
-              <%= image_tag comment.user.get_profile_image , class: "rounded-circle", style:"max-width:50px;" %>
+              <%= image_tag comment.user.get_profile_image , class: "rounded-circle", style:"width:50px; height:50px; object-fit: cover;" %>
             <% end %>
           </div>
           <div style="width: 75%;">
@@ -31,7 +31,7 @@
         <div class="d-flex">
           <div class="my-auto" style="width: 10%;">
             <%= link_to admin_user_path(comment.user) do %>
-              <%= image_tag comment.user.get_profile_image , class: "rounded-circle", style:"max-width:50px; object-fit: cover;" %>
+              <%= image_tag comment.user.get_profile_image , class: "rounded-circle", style:"width:50px; height:50px; object-fit: cover;" %>
             <% end %>
           </div>
           <div style="width: 75%;">
