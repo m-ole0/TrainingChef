@@ -11,115 +11,125 @@
       </h5>
     </div>
   </div>
-  <div class="row mt-5">
-    <div class="col-12 mx-auto text-center">
-      <h4>人気レシピランキング</h4>
-    </div>
-  </div>
-  <!--いいねランキング上位３件を表示-->
-  <div class="row">
-    <% @recipes.first(3).each_with_index do |recipe, index| %>
-      <div class="col-lg-4 col-md-7 mx-auto">
-        <h4 class=" crown-icon text-center">
-          <% if index == 0 %>
-            <i class="fa-solid fa-crown" style="color: #aea219;"> 1位</i> <!-- 1位のアイコン -->
-          <% elsif index == 1 %>
-            <i class="fa-solid fa-crown" style="color: #ababab;"> 2位</i> <!-- 2位のアイコン -->
-          <% elsif index == 2 %>
-            <i class="fa-solid fa-crown" style="color: #bf8508;"> 3位</i> <!-- 3位のアイコン -->
-          <% end %>
-        </h4>
-        <% if user_signed_in? %>
-        <!--ユーザーログイン時ユーザー用のリンクを表示-->
-          <div class="card mb-3" style="height:500px;">
-            <div class="card-header text-center">
-              <%= link_to recipe_path(recipe) do %>
-                <%= image_tag recipe.recipe_image, style:"width: 100%; height: 300px; object-fit: cover;" %>
-              <% end %>
-            </div>
-            <div class="card-body" style="display: flex; align-items: center;">
-              <div>
-                <%= link_to user_path(recipe.user) do %>
-                  <%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px; object-fit: cover;" %>
-                <% end %>
-              </div>
-              <div>
-                <ul style="list-style: none;">
-                  <li><%=link_to recipe.user.name, user_path(recipe.user), class:"user-name-link" %></li>
-                  <li><%=link_to recipe.title, recipe_path(recipe), class:"recipe-title recipe-title-link" %></li>
-                  <li class="mt-1"><%= render "public/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
-                  <li>
-                    <span id="favorite_btn_<%= recipe.id %>"><%= render "public/favorites/favorite_btn", recipe: recipe %></span>/
-                    <i class="fa-regular fa-comment"></i> <%= recipe.comments.count %>件
-                  </li>
-                <ul>
-              </div>
-            </div>
-          </div>
-        <% elsif admin_signed_in? %>
-        <!--管理者がログイン時は管理者画面へのリンクを表示-->
-          <div class="card mb-3" style="height:500px;">
-            <div class="card-header text-center">
-              <%= link_to admin_recipe_path(recipe) do %>
-                <%= image_tag recipe.recipe_image, style:"width: 100%; height: 300px; object-fit: cover;" %>
-              <% end %>
-            </div>
-            <div class="card-body" style="display: flex; align-items: center;">
-              <div>
-                <%= link_to admin_user_path(recipe.user) do %>
-                  <%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px; object-fit: cover;" %>
-                <% end %>
-              </div>
-              <div>
-                <ul style="list-style: none;">
-                  <li><%=link_to recipe.user.name, admin_user_path(recipe.user), class:"user-name-link" %></li>
-                  <li><%=link_to recipe.title, admin_recipe_path(recipe), class: "recipe-title recipe-title-link" %></li>
-                  <li class="mt-1"><%= render "admin/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
-                  <li><span class="favorite-btn-red">♥</span><%= recipe.favorites.count %>件/ <i class="fa-regular fa-comment"></i> <%= recipe.comments.count %>件</li>
-                <ul>
-              </div>
-            </div>
-          </div>
-        <% else %>
-        <!--ログインしていないときはリンクを非表示-->
-          <div class="card mb-3" style="height:500px;">
-            <div class="card-header text-center">
-              <%= image_tag recipe.recipe_image, style:"width: 100%; height: 300px; object-fit: cover;" %>
-            </div>
-            <div class="card-body" style="display: flex; align-items: center;">
-              <div>
-                <%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px; object-fit: cover;" %>
-              </div>
-              <div>
-                <ul style="list-style: none;">
-                  <li><%= recipe.user.name %></li>
-                  <li class="recipe-title"><%= recipe.title %></li>
-                  <li class="mt-1">
-                    <% if recipe.tags.present? %>
-                      <% recipe.tags.limit(3).each do |tag| %>
-                        <div class="d-flex justify-content-start">
-                          <i class="fa-sharp fa-solid fa-tag"></i>
-                          <span class="recipe-tags recipe-tags-link"><%= tag.name %></span>
-                        </div>
-                      <% end %>
-                    <% end %>
-                  </li>
-                  <li><spaan class="favorite-btn-red">♥</spaan><%= recipe.favorites.count %>件/ <i class="fa-regular fa-comment"></i> <%= recipe.comments.count %>件</li>
-                <ul>
-              </div>
-            </div>
-          </div>
-        <% end %>
+  <% if @recipes.present? %>
+    <div class="row mt-5">
+      <div class="col-12 mx-auto text-center">
+        <h4>人気レシピランキング</h4>
       </div>
-    <% end %>
-  </div>
-  <div class="row">
-    <div class="col-lg-12 col-md-7 mx-auto text-right mb-5">
-      <%= link_to recipes_ranking_path do %>
-        <p class="ranking-link">
-          <i class="fa-regular fa-hand-point-right"></i>人気ランキングをもっと見る
-        </p>
+    </div>
+    <!--いいねランキング上位３件を表示-->
+    <div class="row">
+      <% @recipes.first(3).each_with_index do |recipe, index| %>
+        <div class="col-lg-4 col-md-7 mx-auto">
+          <h4 class=" crown-icon text-center">
+            <% if index == 0 %>
+              <i class="fa-solid fa-crown" style="color: #aea219;"> 1位</i> <!-- 1位のアイコン -->
+            <% elsif index == 1 %>
+              <i class="fa-solid fa-crown" style="color: #ababab;"> 2位</i> <!-- 2位のアイコン -->
+            <% elsif index == 2 %>
+              <i class="fa-solid fa-crown" style="color: #bf8508;"> 3位</i> <!-- 3位のアイコン -->
+            <% end %>
+          </h4>
+          <% if user_signed_in? %>
+          <!--ユーザーログイン時ユーザー用のリンクを表示-->
+            <div class="card mb-3" style="height:500px;">
+              <div class="card-header text-center">
+                <%= link_to recipe_path(recipe) do %>
+                  <%= image_tag recipe.recipe_image, style:"width: 100%; height: 300px; object-fit: cover;" %>
+                <% end %>
+              </div>
+              <div class="card-body" style="display: flex; align-items: center;">
+                <div>
+                  <%= link_to user_path(recipe.user) do %>
+                    <%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px; object-fit: cover;" %>
+                  <% end %>
+                </div>
+                <div>
+                  <ul style="list-style: none;">
+                    <li><%=link_to recipe.user.name, user_path(recipe.user), class:"user-name-link" %></li>
+                    <li><%=link_to recipe.title, recipe_path(recipe), class:"recipe-title recipe-title-link" %></li>
+                    <li class="mt-1"><%= render "public/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
+                    <li>
+                      <span id="favorite_btn_<%= recipe.id %>"><%= render "public/favorites/favorite_btn", recipe: recipe %></span>/
+                      <i class="fa-regular fa-comment"></i> <%= recipe.comments.count %>件
+                    </li>
+                  <ul>
+                </div>
+              </div>
+            </div>
+          <% elsif admin_signed_in? %>
+          <!--管理者がログイン時は管理者画面へのリンクを表示-->
+            <div class="card mb-3" style="height:500px;">
+              <div class="card-header text-center">
+                <%= link_to admin_recipe_path(recipe) do %>
+                  <%= image_tag recipe.recipe_image, style:"width: 100%; height: 300px; object-fit: cover;" %>
+                <% end %>
+              </div>
+              <div class="card-body" style="display: flex; align-items: center;">
+                <div>
+                  <%= link_to admin_user_path(recipe.user) do %>
+                    <%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px; object-fit: cover;" %>
+                  <% end %>
+                </div>
+                <div>
+                  <ul style="list-style: none;">
+                    <li><%=link_to recipe.user.name, admin_user_path(recipe.user), class:"user-name-link" %></li>
+                    <li><%=link_to recipe.title, admin_recipe_path(recipe), class: "recipe-title recipe-title-link" %></li>
+                    <li class="mt-1"><%= render "admin/recipes/recipe_tag", recipe_tags: recipe.tags %></li>
+                    <li><span class="favorite-btn-red">♥</span><%= recipe.favorites.count %>件/ <i class="fa-regular fa-comment"></i> <%= recipe.comments.count %>件</li>
+                  <ul>
+                </div>
+              </div>
+            </div>
+          <% else %>
+          <!--ログインしていないときはリンクを非表示-->
+            <div class="card mb-3" style="height:500px;">
+              <div class="card-header text-center">
+                <%= image_tag recipe.recipe_image, style:"width: 100%; height: 300px; object-fit: cover;" %>
+              </div>
+              <div class="card-body" style="display: flex; align-items: center;">
+                <div>
+                  <%= image_tag recipe.user.get_profile_image, class: "rounded-circle", style:"width: 60px; height: 60px; object-fit: cover;" %>
+                </div>
+                <div>
+                  <ul style="list-style: none;">
+                    <li><%= recipe.user.name %></li>
+                    <li class="recipe-title"><%= recipe.title %></li>
+                    <li class="mt-1">
+                      <% if recipe.tags.present? %>
+                        <% recipe.tags.limit(3).each do |tag| %>
+                          <div class="d-flex justify-content-start">
+                            <i class="fa-sharp fa-solid fa-tag"></i>
+                            <span class="recipe-tags recipe-tags-link"><%= tag.name %></span>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </li>
+                    <li><spaan class="favorite-btn-red">♥</spaan><%= recipe.favorites.count %>件/ <i class="fa-regular fa-comment"></i> <%= recipe.comments.count %>件</li>
+                  <ul>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
-  </div>
+  <% else %>
+    <div class="row">
+      <div class=" col-12 col-sm-8 col-md-6 mx-auto">
+        <%= image_tag 'TrainingChef_logo.png', style: "max-width: 100%;" %>
+      </div>
+    </div>
+  <% end %>
+  <% if @recipes.present? %>
+    <div class="row">
+      <div class="col-lg-12 col-md-7 mx-auto text-right mb-5">
+        <%= link_to recipes_ranking_path do %>
+          <p class="ranking-link">
+            <i class="fa-regular fa-hand-point-right"></i>人気ランキングをもっと見る
+          </p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
