@@ -132,6 +132,10 @@ diet_tag = Tag.find_or_create_by!(name: "ダイエット") do |tag|
   tag.name = "ダイエット"
 end
 
+sake_tag = Tag.find_or_create_by!(name: "鮭") do |tag|
+  tag.name = "鮭"
+end
+
 # レシピテストデータ
 # レシピ1テストデータ
 sasami_kunsei = Recipe.find_or_create_by!(title: "ささみの燻製") do |recipe|
@@ -209,7 +213,7 @@ chicken_nanban = Recipe.find_or_create_by!(title: "チキン南蛮") do |recipe|
   3.フライパンにオリーブオイルを入れ、鶏胸肉を揚げ焼きする。\n
   4.火を止め、余分な油を拭き取り、1を入れて全体に絡ませる。\n
   5.お好みの野菜と一緒にお皿に盛り付けタルタルソースをかけて完成。}
-  recipe.user = kanako
+  recipe.user = taro
   recipe.tags << torimuneniku_tag
   recipe.tags << zouryou_tag
   recipe.tags << powerup_tag
@@ -232,7 +236,7 @@ Comment.find_or_create_by!(comment: "オリーブオイルは結構入れます�
 end
 
 Comment.find_or_create_by!(comment: "揚げ焼きなのでフライパンの底から1cmくらいを目安にしてください！") do |comment|
-  comment.user_id = kanako.id
+  comment.user_id = taro.id
   comment.recipe_id = chicken_nanban.id
 end
 
@@ -281,7 +285,36 @@ broccoli = Recipe.find_or_create_by!(title: "鶏胸肉のヘルシーポン酢�
   recipe.process = %Q{1.胸肉を爪楊枝で刺し、味がしみやすいようにする。\n
   2.圧力鍋に材料を全て入れ、20分煮る。\n
   3.圧力鍋のピンが下がったら、お皿に写して完成。}
-  recipe.user = kento
+  recipe.user = taro
   recipe.tags << diet_tag
   recipe.tags << torimuneniku_tag
+end
+
+# レシピ7テストデータ
+sakehoiruyaki = Recipe.find_or_create_by!(title: "タンパク質豊富！鮭のホイル焼き") do |recipe|
+  recipe.recipe_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/recipe7.jpg"), filename: "recipe7.jpg")
+  recipe.material = %Q{鮭(2切れ)\n塩胡椒(適量)\nしめじ(半分)\nにんじん(4分の1)\nネギ(適量)\n酒(適量)\nバター(8x2個)}
+  recipe.process = %Q{1.鮭の切り身の表面をキッチンペーパーで拭き取り、塩胡椒する。\n
+  2.にんじんをスライスし、しめじは石づきをとってほぐす。\n
+  3.フライパンにアルミホイルを大きめに敷き、しめじとにんじんを敷いた上に酒を並べる。\n
+  4.全体に軽く酒をふり、バターを乗せたら、アルミホイルで包んで、弱中火で約10分。\n
+  5.野菜から出る水分がなくなる手前で火を止めて、お皿に盛り付けて完成。}
+  recipe.user = taro
+  recipe.tags << sake_tag
+end
+
+# レシピ8テストデータ
+saladchicken = Recipe.find_or_create_by!(title: "バジルサラダチキン") do |recipe|
+  recipe.recipe_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/recipe8.jpg"), filename: "recipe8.jpg")
+  recipe.material = %Q{鶏胸肉(1枚)\n塩(小さじ1)\n砂糖(小さじ1)\nバジル粉末(お好みの量)}
+  recipe.process = %Q{1.鶏胸肉両面にフォークを刺して味を染み込ませやすくする。\n
+  2.ジップロックなど密閉袋に材料を全て入れ揉み込み、空気を抜いたら30分以上冷蔵庫で放置する。\n
+  3.蓋ができるお鍋にお湯を沸かし、沸騰したら袋のまま胸肉を入れ、弱火で3分。\n
+  4.3分経ったら蓋を閉め、冷めるまで鍋のまま放置する。\n
+  5.食べやすい大きさに切り分けて完成です。}
+  recipe.user = taro
+  recipe.tags << diet_tag
+  recipe.tags << genryou_tag
+  recipe.tags << torimuneniku_tag
+  recipe.tags << kintore_tag
 end
