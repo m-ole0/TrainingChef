@@ -31,6 +31,9 @@
                 <span id="favorite_btn_<%= @recipe.id %>"><%= render "public/favorites/favorite_btn", recipe: @recipe %></span>/
                 <span id="comment_count"><%= render 'public/comments/comment_count', recipe: @recipe %></span>
               </li>
+              <li>
+                投稿日: <%= @recipe.created_at.strftime('%Y/%m/%d') %>
+              </li>
             <ul>
           </div>
         </div>

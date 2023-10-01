@@ -30,6 +30,9 @@
               <li>
                 <span class="favorite-btn-red">♥</span><%= @recipe.favorites.count %>件/ <i class="fa-regular fa-comment"></i>  <%= @recipe.comments.count %>件</span>
               </li>
+              <li>
+                投稿日: <%= @recipe.created_at.strftime('%Y/%m/%d') %>
+              </li>
             <ul>
           </div>
         </div>
