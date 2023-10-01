@@ -11,6 +11,8 @@ class Comment < ApplicationRecord
   private
 
   def create_notifications
-    Notification.create(subject: self, user: recipe.user, action_type: :commented_to_own_recipe)
+    unless user == recipe.user
+      Notification.create(subject: self, user: recipe.user, action_type: :commented_to_own_recipe)
+    end
   end
 end
