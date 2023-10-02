@@ -15,11 +15,26 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:notice] = "ユーザー情報を更新しました。"
-      redirect_to user_path(@user)
+    if user_params[:profile_image].present?
+      result = Vision.image_analysis(user_params[:profile_image])
+      if result
+        if @user.update(user_params)
+          flash[:notice] = "ユーザー情報を更新しました。"
+          redirect_to user_path(@user)
+        else
+          render "edit"
+        end
+      else
+        @user.errors.add(:base, "画像が不適切です。別の画像を選択してください。")
+        render "edit"
+      end
     else
-      render "edit"
+      if @user.update(user_params)
+        flash[:notice] = "ユーザー情報を更新しました。"
+        redirect_to user_path(@user)
+      else
+        render "edit"
+      end
     end
   end
 
