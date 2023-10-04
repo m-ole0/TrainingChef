@@ -44,6 +44,7 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+- API：[Google Vision API](https://cloud.google.com/vision?hl=ja)
 
 ## 使用素材
 - サイト内使用画像として下記を使用
