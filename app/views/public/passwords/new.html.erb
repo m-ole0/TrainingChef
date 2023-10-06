@@ -1,16 +1,17 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "publics/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container p-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h5>パスワードの再設定</h5>
+      <%= form_with(model: resource, local: true, url: password_path(resource_name), method: :post) do |f| %>
+        <%= render "public/shared/error_messages.html.erb", resource: resource %>
+        <div class="mt-3">
+          <%= f.label :ご登録のメールアドレス %>
+          <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", class: "form-control" %>
+        </div>
+        <div class="mt-3">
+          <%= f.submit "パスワード再設定用リンクを送信", class: "btn btn-outline-info" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "publics/shared/links" %>
+</div>
