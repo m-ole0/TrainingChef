@@ -7,52 +7,16 @@ class Public::RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
-    @recipe.user_id = current_user.id
-    tag_list = params[:recipe][:name].split(',')
-    current_tags = @recipe.current_tags
-    new_tags = @recipe.new_tags(tag_list, current_tags)
+    @recipe = current_user.recipes.new(recipe_params)
+    @recipe.recipe_image_params = params[:recipe][:recipe_image]
 
-    if !recipe_params[:title].present?
-      @recipe.errors.add(:base, "レシピ名を入力してください。")
-    end
-
-    if !recipe_params[:material].present?
-      @recipe.errors.add(:base, "材料を入力してください。")
-    end
-
-    if !recipe_params[:process].present?
-      @recipe.errors.add(:base, "調理手順を入力してください。")
-    end
-
-    if recipe_params[:recipe_image].present?
-      result = Vision.image_analysis(recipe_params[:recipe_image])
-      if result
-        if Tag.all_tags_valid?(new_tags)
-          if @recipe.save
-            tag_list = tag_list.uniq
-            # 重複したタグを削除
-            @recipe.save_tags(tag_list, current_tags, new_tags)
-            flash[:notice] = "投稿に成功しました。"
-            redirect_to user_path(current_user)
-          else
-            prepare_and_render_new(tag_list)
-          end
-        else
-          @recipe.errors.add(:base, "タグは30文字以内にしてください。")
-          prepare_and_render_new(tag_list)
-        end
-      else
-        @recipe.errors.add(:base, "画像が不適切です。別の画像を選択してください。")
-        prepare_and_render_new(tag_list)
-      end
+    if @recipe.save
+      redirect_to user_path(current_user), notice: "投稿に成功しました。"
     else
-      @recipe.errors.add(:base, "画像を選択してください")
-      prepare_and_render_new(tag_list)
+      @tag_list = @recipe.tag_name
+      render :new
     end
   end
-
-
 
   def index
     to = Time.current.at_end_of_day
@@ -74,46 +38,13 @@ class Public::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    tag_list = params[:recipe][:name].split(',')
-    current_tags = @recipe.current_tags
-    new_tags = @recipe.new_tags(tag_list, current_tags)
-
-    if !recipe_params[:title].present?
-      @recipe.errors.add(:base, "レシピ名を入力してください。")
-    end
-
-    if !recipe_params[:material].present?
-      @recipe.errors.add(:base, "材料を入力してください。")
-    end
-
-    if !recipe_params[:process].present?
-      @recipe.errors.add(:base, "調理手順を入力してください。")
-    end
-
-    if recipe_params[:recipe_image].present?
-      result = Vision.image_analysis(recipe_params[:recipe_image])
-      if result
-        if Tag.all_tags_valid?(new_tags)
-          if @recipe.update(recipe_params)
-            tag_list = tag_list.uniq
-            # 重複したタグを削除
-            @recipe.save_tags(tag_list, current_tags, new_tags)
-            flash[:notice] = "レシピを更新しました。"
-            redirect_to recipe_path(@recipe)
-          else
-            prepare_and_render_edit(tag_list)
-          end
-        else
-          @recipe.errors.add(:base, "タグは30文字以内にしてください。")
-          prepare_and_render_edit(tag_list)
-        end
-      else
-        @recipe.errors.add(:base, "画像が不適切です。別の画像を選択してください。")
-        prepare_and_render_edit(tag_list)
-      end
+    @recipe.recipe_image_params = params[:recipe][:recipe_image]
+    if @recipe.update(recipe_params)
+      flash[:notice] = "レシピを更新しました。"
+      redirect_to recipe_path(@recipe)
     else
-      @recipe.errors.add(:base, "画像を選択してください。")
-      prepare_and_render_edit(tag_list)
+      @tag_list = @recipe.tag_name
+      render :edit
     end
   end
 
@@ -142,7 +73,7 @@ class Public::RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :material, :process, :recipe_image)
+    params.require(:recipe).permit(:title, :material, :process, :recipe_image, :tag_name)
   end
 
   def is_matching_login_user
@@ -155,10 +86,5 @@ class Public::RecipesController < ApplicationController
   def prepare_and_render_edit(tag_list)
     @tag_list = tag_list.join(',')
     render "edit"
-  end
-
-  def prepare_and_render_new(tag_list)
-    @tag_list = tag_list.join(',')
-    render "new"
   end
 end
