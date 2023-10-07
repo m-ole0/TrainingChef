@@ -1,4 +1,5 @@
 # TrainingChef
+### https://training-chef.com/
 
 ## サイト概要
 ### サイトテーマ
@@ -8,7 +9,7 @@
 ### テーマを選んだ理由
 昨今お手頃な価格で利用できる月額制のトレーニングジムが増えており、
 私自身を含め、ジムに通いトレーニングを始めるとともに、食事にも気を遣い始めたという方のお話をよく聞きます。
-しかし、トレーニング中に増量・減量したい時、初心者だとどんなものを食べるべきなのかわからなかったり、
+しかし、トレーニング中増量・減量したい時、初心者だとどんなものを食べるべきなのかわからなかったり、
 レシピが同じものばかりに偏り飽きてしまったり、食事制限の継続が難しいと頭を悩ませていました。
 
 そこで、トレーニングをしている人が、減量・増量を意識したレシピを共有することで、
@@ -39,7 +40,7 @@
 * [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1BDkxsfVc8k2xkV8PSZ_4Qx4dOJWOaRrc1LAxsMTRwOk/edit?usp=sharing)
 
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Linux(AmazonLinux2)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
