@@ -37,6 +37,9 @@ ja:
         recipe_image: "画像"
       tag:
         name: "タグ名"
+      contact:
+        name: "名前"
+        content: "お問い合わせ内容"
     errors:
       models:
         user:

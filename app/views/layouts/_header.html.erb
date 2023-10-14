@@ -50,6 +50,9 @@
                 <li>
                   <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
                 </li>
+                <li>
+                  <%= link_to "お問い合わせ", new_contact_path, class: 'nav-link text-light' %>
+                </li>
               <% elsif admin_signed_in? %>
                 <li>
                   <%= link_to "レシピランキング", recipes_ranking_path, class: 'nav-link text-light' %>
