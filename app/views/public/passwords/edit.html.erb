@@ -3,17 +3,17 @@
     <div class="col-md-6">
       <h5>パスワード再設定</h5>
       <%= form_with(model: resource, local: true, url: password_path(resource_name), method: :put) do |f| %>
-        <%= render "public/shared/error_messages", resource: resource %>
+        <%= render "layouts/errors", obj: resource %>
         <%= f.hidden_field :reset_password_token %>
         <div class="field mt-3">
-          <%= f.label :新しいパスワード %>
+          <%= f.label :password, "新しいパスワード" %>
           <% if @minimum_password_length %>
             (<%= @minimum_password_length %> 文字以上)
           <% end %>
           <%= f.password_field :password, autofocus: true, class: "form-control" %>
         </div>
         <div class="field mt-3">
-          <%= f.label :新しいパスワード（確認用） %>
+          <%= f.label :password_confirmation, "新しいパスワード（確認用）" %>
           <%= f.password_field :password_confirmation, class: "form-control" %>
         </div>
         <div class="actions mt-3">
@@ -23,4 +23,3 @@
     </div>
   </div>
 </div>
-主
