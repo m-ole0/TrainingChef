@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       get 'search_tag' => 'recipes#search_tag'
     end
     resources :notifications, only: [:index, :destroy]
+    resources :contacts, only: [:new, :create]
   end
 
   # 管理者用ルーティング
