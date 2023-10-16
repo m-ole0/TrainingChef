@@ -56,7 +56,7 @@ class Public::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "ユーザーデータを削除しました"
+    flash[:notice] = "ユーザーデータを削除しました。"
     redirect_to root_path
   end
 
