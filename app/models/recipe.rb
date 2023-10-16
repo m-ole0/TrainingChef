@@ -41,6 +41,7 @@ class Recipe < ApplicationRecord
   end
 
   def set_tags
+    return unless tag_name
     new_tags = []
     tag_name.split(",").uniq.each do |name|
       tag = Tag.find_or_create_by(name: name)
