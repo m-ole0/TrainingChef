@@ -21,7 +21,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
             </div>
-            <%= f.text_field :password, autocomplete: "new-password", class:"form-control", placeholder:"パスワード(6文字以上)" %>
+            <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"パスワード(6文字以上)" %>
           </div>
           <%= link_to "パスワードを忘れた場合はこちら", new_user_password_path, class:"password-link" %>
           <%= f.submit "サインイン", class:"btn btn-lg btn-block btn-outline-info mt-4" %>
