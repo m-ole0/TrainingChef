@@ -37,7 +37,7 @@
         <h4 class="mt-4">本当にレシピを削除しますか？</h4>
         <div>
           <%= link_to "レシピページに戻る", admin_recipe_path(@recipe), class:"btn btn-outline-info mt-3" %>
-          <%= link_to "レシピを削除する", admin_recipe_path(@recipe), method: :delete, class:"btn btn-outline-danger mt-3" %>
+          <%= link_to "レシピを削除する", admin_recipe_path(@recipe), method: :delete, "data-confirm" => "本当にレシピを削除してもよろしいですか？", class:"btn btn-outline-danger mt-3" %>
         </div>
       </div>
     </div>
