@@ -16,7 +16,7 @@
           </div>
           <% if comment.user == current_user %>
             <div class="my-auto ml-2" style="width: 15%;">
-              <%= link_to "削除", recipe_comment_path(comment.recipe, comment), method: :delete, remote: true, class:"btn btn-outline-danger btn-sm" %>
+              <%= link_to "削除", recipe_comment_path(comment.recipe, comment), method: :delete, "data-confirm" => "コメントを削除しますか？", remote: true, class:"btn btn-outline-danger btn-sm" %>
             </div>
           <% end %>
         </div>
@@ -41,7 +41,7 @@
             </ul>
           </div>
           <div class="my-auto ml-2" style="width: 15%;">
-            <%= link_to "削除", recipe_comment_path(comment.recipe, comment), method: :delete, remote: true, class:"btn btn-outline-danger btn-sm" %>
+            <%= link_to "削除", recipe_comment_path(comment.recipe, comment), method: :delete, "data-confirm" => "コメントを削除しますか？", remote: true, class:"btn btn-outline-danger btn-sm" %>
           </div>
         </div>
       </div>
