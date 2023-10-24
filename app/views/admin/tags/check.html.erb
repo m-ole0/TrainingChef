@@ -7,7 +7,7 @@
       <h4 class="mt-5">本当にタグを削除しますか？</h4>
       <p class="mt-3">タグを削除すると、レシピからも該当のタグが削除されます。</p>
       <%= link_to "タグ一覧ページへ戻る", admin_tags_path, class:"btn btn-outline-info mt-3" %>
-      <%= link_to "タグを削除する", admin_tag_path(@tag), method: :delete, class:"btn btn-outline-danger mt-3" %>
+      <%= link_to "タグを削除する", admin_tag_path(@tag), method: :delete, "data-confirm" => "本当にタグを削除してもよろしいですか？", class:"btn btn-outline-danger mt-3" %>
     </div>
   </div>
 </div>
