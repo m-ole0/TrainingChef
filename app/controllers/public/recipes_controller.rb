@@ -9,7 +9,6 @@ class Public::RecipesController < ApplicationController
   def create
     @recipe = current_user.recipes.new(recipe_params)
     @recipe.recipe_image_params = params[:recipe][:recipe_image]
-
     if @recipe.save
       redirect_to user_path(current_user), notice: "投稿に成功しました。"
     else
@@ -19,10 +18,7 @@ class Public::RecipesController < ApplicationController
   end
 
   def index
-    to = Time.current.at_end_of_day
-    from = 1.week.ago.at_beginning_of_day
-    sorted_recipes = Recipe.includes(:favorites).sort_by { |recipe| -recipe.favorites.where(created_at: from...to).count }
-    @recipes = Kaminari.paginate_array(sorted_recipes).page(params[:page]).per(5)
+    @recipes = Recipe.left_joins(:week_favorites).group(:id).order("count(favorites.recipe_id) desc").page(params[:page]).per(5)
   end
 
   def show
