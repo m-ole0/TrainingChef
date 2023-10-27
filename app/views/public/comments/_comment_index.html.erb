@@ -12,6 +12,7 @@
             <ul style="list-style: none;">
               <li><%= link_to comment.user.name, user_path(comment.user), class:"user-name-link" %></li>
               <li><%= comment.comment %></li>
+              <li class="comment-time"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></li>
             </ul>
           </div>
           <% if comment.user == current_user %>
@@ -38,6 +39,7 @@
             <ul style="list-style: none;">
               <li><%= link_to comment.user.name, admin_user_path(comment.user), class:"user-name-link" %></li>
               <li><%= comment.comment %></li>
+              <li class="comment-time"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></li>
             </ul>
           </div>
           <div class="my-auto ml-2" style="width: 15%;">
