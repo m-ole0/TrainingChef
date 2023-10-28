@@ -18,7 +18,10 @@ class Public::RecipesController < ApplicationController
   end
 
   def index
-    @recipes = Recipe.left_joins(:week_favorites).group(:id).order("count(favorites.recipe_id) desc").page(params[:page]).per(5)
+    @recipes = Recipe.left_outer_joins(:favorites)
+             .select('recipes.*, COUNT(favorites.id) AS favorites_count')
+             .group('recipes.id')
+             .order('favorites_count DESC').page(params[:page]).per(5)
   end
 
   def show
